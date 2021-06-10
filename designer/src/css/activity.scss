@@ -1,0 +1,75 @@
+.activity > *{
+    outline: none !important;
+}
+
+.activity .selection-border{
+    fill: greenyellow;
+}
+
+.activity .drag-border{
+    fill: orangered;
+}
+
+.activity .border{
+    fill: #333333;
+}
+
+.activity .background{
+    fill: #F5F5F6;
+    cursor: pointer;
+}
+
+.activity.ondrag .background{
+    cursor: move;
+}
+
+.activity .handles > .area{
+    fill: transparent;
+}
+
+.activity .handles > .arrow{
+    fill: darkgray;
+    stroke: darkgray;
+}
+
+.activity .name .name-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display:flex;
+    text-align: center;
+}
+.activity .name .name-text{
+    font-family: monospace;
+    margin: 0 auto;
+    margin:auto;
+}
+
+/*
+.activity-tooltip-template .activity-id{
+    font-family: monospace;
+    font-weight: 100;
+    font-size: small;
+}
+
+.activity-tooltip-template .row.left{
+    text-align: left;
+}
+
+.activity-tooltip-template hr{
+    background: #bdbdbd;
+}
+
+
+.activity-tooltip-template input[type=text]{
+    font-size: small;
+    background-color : #323232 !important;
+    color: whitesmoke !important;
+}
+
+.activity-tooltip-template .btn-sm{
+    font-size: 0.8em;
+}
+*/
