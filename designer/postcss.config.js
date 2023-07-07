@@ -1,9 +1,7 @@
-const autoprefixer = require('autoprefixer')
-
 module.exports = {
-  plugins: [
-    autoprefixer({
-      grid: true
-    })
-  ]
+  plugins: {
+    'postcss-preset-env': {
+      browsers: 'last 2 versions',
+    },
+  },
 }
