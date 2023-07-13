@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: paths.build,
     filename: '[name].bundle.js',
-    publicPath: '/',
+    publicPath: '/'
   },
 
   // Customize the webpack build process
@@ -28,21 +28,22 @@ module.exports = {
           from: paths.public,
           to: 'assets',
           globOptions: {
-            ignore: ['*.DS_Store'],
+            ignore: ['*.DS_Store']
           },
-          noErrorOnMissing: true,
-        },
-      ],
+          noErrorOnMissing: true
+        }
+      ]
     }),
 
     // Generates an HTML file from a template
     // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
       title: packageFile.name,
-      favicon: paths.src + '/img/favicon.png',
+      version: packageFile.version,
+      // favicon: paths.src + '/img/favicon.png',
       template: paths.src + '/index.html', // template file
-      filename: 'index.html', // output file
-    }),
+      filename: 'index.html' // output file
+    })
   ],
 
   // Determine how modules within the project are treated
@@ -55,8 +56,8 @@ module.exports = {
       { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
 
       // Fonts and SVGs: Inline files
-      { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
-    ],
+      { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' }
+    ]
   },
 
   resolve: {
@@ -64,7 +65,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json'],
     alias: {
       '@': paths.src,
-      assets: paths.public,
-    },
-  },
+      assets: paths.public
+    }
+  }
 }
