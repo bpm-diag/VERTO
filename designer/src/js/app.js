@@ -24,9 +24,11 @@ export default class App {
     this.import = new Import()
     this.export = new Export()
 
-    if (model === undefined || model === null) model = this.data.loadModelFromCache()
+    // if model == null -> is setted to start a new project
+    // if model == undefined -> load from cache
+
+    if (model === undefined) model = this.data.loadModelFromCache()
     if (model !== undefined && model !== null) {
-      console.log(model)
       model.data.activities.forEach(a => {
         this.data.createActivity(a.id, { x: a.x, y: a.y }).setName(a.name)
       })

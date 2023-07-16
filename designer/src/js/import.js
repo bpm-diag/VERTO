@@ -2,6 +2,7 @@ import * as d3 from 'd3'
 import * as $ from 'jquery'
 import { JSONModel, XMLModel } from './model'
 import lockUI from './lockUI'
+import '../styles/import.scss'
 
 /* global alert, FileReader */
 

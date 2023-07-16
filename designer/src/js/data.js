@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid'
 import * as d3 from 'd3'
 import Activity from './activity'
 import Constraint from './constraint'
@@ -6,7 +7,7 @@ import { JSONModel, XMLModel } from './model'
 export default class Data {
   constructor (_app) {
     this.app = _app
-    this.modelId = this.uuid()
+    this.modelId = uuidv4()
     this.modelName = 'verto'
     this.activities = {}
     this.constraints = {}
@@ -27,6 +28,7 @@ export default class Data {
     })
   }
 
+  /*
   uuid () {
     let dt = Date.now()
     const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -36,7 +38,41 @@ export default class Data {
     })
     return uuid
   }
+  */
 
+  generateActivityID () {
+    let i = 0
+    while (true) {
+      const id = `A-${i}`
+      let found = false
+      for (const key in this.activities) {
+        if (this.activities[key].id === id) {
+          found = true
+          break
+        }
+      }
+      if (!found) return id
+      i++
+    }
+  }
+
+  generateConstraintID () {
+    let i = 0
+    while (true) {
+      const id = `C-${i}`
+      let found = false
+      for (const key in this.constraints) {
+        if (this.constraints[key].id === id) {
+          found = true
+          break
+        }
+      }
+      if (!found) return id
+      i++
+    }
+  }
+
+  /*
   generateID () {
     let uuid = 0
     while (true) {
@@ -58,6 +94,7 @@ export default class Data {
       if (!found) return uuid
     }
   }
+  */
 
   /*
   ACTIVITIES
@@ -78,7 +115,7 @@ export default class Data {
   }
 
   createActivity (id, position, select = false) {
-    if (id === undefined || id === null) id = this.generateID()
+    if (id === undefined || id === null) id = this.generateActivityID()
     this.activities[id] = new Activity(id, position)
     if (select) this.selectElement(id)
     this.saveModelToCache()
@@ -114,7 +151,7 @@ export default class Data {
   }
 
   createConstraint (id, sourceId, targetId, type, select = false) {
-    if (id === undefined || id === null) id = this.generateID()
+    if (id === undefined || id === null) id = this.generateConstraintID()
     this.constraints[id] = new Constraint(id, sourceId, targetId, type)
     this.getActivity(sourceId).addConstraint(id)
     this.getActivity(targetId).addConstraint(id)
@@ -204,7 +241,6 @@ export default class Data {
   loadModelFromCache () {
     let model = null
     const str = window.localStorage.getItem(this.cacheKey)
-    console.log('readed model from chace', str)
     if (str == null) return null
     try {
       model = new JSONModel(str)
@@ -218,7 +254,6 @@ export default class Data {
   saveModelToCache () {
     const str = this.getJson()
     window.localStorage.setItem(this.cacheKey, str)
-    console.log('saved to chache', str)
   }
 
   clearCache () {

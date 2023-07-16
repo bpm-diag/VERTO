@@ -985,12 +985,10 @@ class NotChainSuccession extends ConstraintType {
 }
 
 const constraintTypes = {
-  /*
-  "Existence": {
-      "Existence": new ConstraintType_Existence(),
-      "Absence": new ConstraintType_Absence(),
+  'Activity Existence': {
+    Existence: new Existence(),
+    Absence: new Absence()
   },
-  */
   'Choice Relation': {
     Choice: new Choice(),
     ExclusiveChoice: new ExclusiveChoice()

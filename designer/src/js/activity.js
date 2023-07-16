@@ -6,7 +6,7 @@ import '../styles/activity.scss'
 export default class Activity {
   constructor (id, position) {
     this.id = id
-    this.name = `activity-${id}`
+    this.name = `activity ${id}`
     this.constraints = new Set()
     this.selected = false
 
@@ -17,15 +17,27 @@ export default class Activity {
       * Private fields.
       */
     this._size = {
-      width: 120,
-      height: 60,
+      width: 140,
+      height: 80,
       minWidth: 50,
       minHeight: 50,
       handles: 15,
       border: 2,
       borderRadious: 5,
       text: 10,
-      link: 3
+      link: 3,
+      absenceBox: {
+        width: 50,
+        height: 20,
+        text: 12,
+        border: 1
+      },
+      existenceBox: {
+        width: 60,
+        height: 20,
+        text: 12,
+        border: 1
+      }
     }
     this._svg = { // all variable regarding svg
       g: undefined,
@@ -54,6 +66,18 @@ export default class Activity {
         }
       },
       tooltip: undefined,
+      absenceBox: {
+        g: undefined,
+        rect: undefined,
+        text: undefined,
+        border: undefined
+      },
+      existenceBox: {
+        g: undefined,
+        rect: undefined,
+        text: undefined,
+        border: undefined
+      },
       x: position.x, // - this._size.width/2,
       y: position.y, // - this._size.height/2,
       overview: undefined
@@ -136,6 +160,104 @@ export default class Activity {
       .append('xhtml:div').attr('class', 'name-text').style('text-width', this._size.text)
       .select(function () { return this.parentNode })
       .select(function () { return this.parentNode })
+
+    // absence box
+    this._svg.absenceBox.g = this._svg.g.append('g')
+      .attr('class', 'absence-box')
+      .attr('transform', `translate(
+        ${this._size.border + (this._size.width - this._size.absenceBox.width) / 2}, 
+        ${-this._size.border + this._size.height - (this._size.absenceBox.height) / 2})`
+      )
+      .style('display', 'none')
+
+    this._svg.absenceBox.border = this._svg.absenceBox.g.append('rect')
+      .attr('class', 'absence-box-border')
+      .attr('width', this._size.absenceBox.width + 2 * this._size.absenceBox.border)
+      .attr('height', this._size.absenceBox.height + 2 * this._size.absenceBox.border)
+      .attr('x', -this._size.absenceBox.border)
+      .attr('y', -this._size.absenceBox.border)
+      .attr('rx', this._size.borderRadious - 1)
+      .attr('ry', this._size.borderRadious - 1)
+
+    this._svg.absenceBox.rect = this._svg.absenceBox.g.append('rect')
+      .attr('class', 'absence-box-rect')
+      .attr('width', this._size.absenceBox.width)
+      .attr('height', this._size.absenceBox.height)
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('rx', this._size.borderRadious - 1)
+      .attr('ry', this._size.borderRadious - 1)
+
+    this._svg.absenceBox.text = this._svg.absenceBox.g.append('text')
+      .attr('class', 'absence-box-text')
+      .attr('width', this._size.absenceBox.width)
+      .attr('height', this._size.absenceBox.height)
+      .attr('x', this._size.absenceBox.width / 2)
+      .attr('y', this._size.absenceBox.height / 2)
+      .attr('font-size', this._size.absenceBox.text)
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
+      .text('0')
+
+    // existence box
+    this._svg.existenceBox.g = this._svg.g.append('g')
+      .attr('class', 'existence-box')
+      .attr('transform', `translate(
+        ${this._size.border + (this._size.width - this._size.existenceBox.width) / 2}, 
+        ${this._size.border - (this._size.existenceBox.height) / 2})`
+      )
+      .style('display', 'none')
+
+    this._svg.existenceBox.border = this._svg.existenceBox.g.append('rect')
+      .attr('class', 'existence-box-border')
+      .attr('width', this._size.existenceBox.width + 2 * this._size.existenceBox.border)
+      .attr('height', this._size.existenceBox.height + 2 * this._size.existenceBox.border)
+      .attr('x', -this._size.existenceBox.border)
+      .attr('y', -this._size.existenceBox.border)
+      .attr('rx', this._size.borderRadious - 1)
+      .attr('ry', this._size.borderRadious - 1)
+
+    this._svg.existenceBox.rect = this._svg.existenceBox.g.append('rect')
+      .attr('class', 'existence-box-rect')
+      .attr('width', this._size.existenceBox.width)
+      .attr('height', this._size.existenceBox.height)
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('rx', this._size.borderRadious - 1)
+      .attr('ry', this._size.borderRadious - 1)
+
+    this._svg.existenceBox.text = this._svg.existenceBox.g.append('text')
+      .attr('class', 'existence-box-text')
+      .attr('width', this._size.existenceBox.width)
+      .attr('height', this._size.existenceBox.height)
+      .attr('x', this._size.existenceBox.width / 2)
+      .attr('y', this._size.existenceBox.height / 2)
+      .attr('font-size', this._size.existenceBox.text)
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
+      .text('1...X')
+
+    /*
+    this._svg.existenceBox.rect = this._svg.g.append('rect')
+      .attr('class', 'existence-box')
+      .attr('width', this._size.existenceBox.width)
+      .attr('height', this._size.existenceBox.height)
+      .attr('x', this._size.border + (this._size.width - this._size.existenceBox.width) / 2)
+      .attr('y', this._size.border - (this._size.existenceBox.height) / 2)
+      .attr('rx', this._size.borderRadious - 1)
+      .attr('ry', this._size.borderRadious - 1)
+
+    this._svg.existenceBox.text = this._svg.g.append('text')
+      .attr('class', 'existence-box-text')
+      .attr('width', this._size.existenceBox.width)
+      .attr('height', this._size.existenceBox.height)
+      .attr('x', (this._size.border + (this._size.width - this._size.existenceBox.width) / 2) + (this._size.existenceBox.width / 2))
+      .attr('y', (-this._size.border - (this._size.existenceBox.height) / 2) + (this._size.existenceBox.height / 2))
+      .attr('font-size', this._size.existenceBox.text)
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
+      .text('1...X')
+      */
 
     this._createHandles()
     // this._createTooltip();
@@ -271,15 +393,16 @@ export default class Activity {
         .on('end', () => this._onDragEndConstraint(this._svg.handles.left))
       )
       /*
-      tippy(this._svg.handles.top.area.node(), {
-          placement: "top",
-          distance: 20,
-          arrow: true,
-          content: "Click and drag the arrow on another activity <br> to create a constraint",
-          onShow: () => {
-              if(window.app.data.getConstraints().length != 0) return false;
+    tippy(this._svg.handles.top.area.node(), {
+      placement: 'top',
+      distance: 20,
+      arrow: true,
+      content: 'Click and drag the arrow on another activity <br> to create a constraint',
+      onShow: () => {
+        if (window.app.data.getConstraints().length != 0) return false
           }
-      });
+    })
+
       tippy(this._svg.handles.right.area.node(), {
           placement: "right",
           distance: 20,

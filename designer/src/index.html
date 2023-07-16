@@ -35,62 +35,87 @@
   <svg id="canvas-overview"></svg>
 
   <div id="sidepanel">
-      <div class="sidepanel-menu global-menu">
-          <nav>
-              <div class="nav nav-tabs" role="tablist">
-                <a class="nav-item nav-link active" id="nav-activities" data-toggle="tab" href="#tab-activities" role="tab" aria-controls="tab-activities" aria-selected="true">Activities <span id="num-activities" class="badge badge-pill badge-light"></span></a>
-                <a class="nav-item nav-link" id="nav-constraints" data-toggle="tab" href="#tab-constraints" role="tab" aria-controls="tab-constraints" aria-selected="false">Constraints <span id="num-constraints" class="badge badge-pill badge-light"></span></a>
-              </div>
-            </nav>
-            <div class="tab-content">
-              <div class="tab-pane fade show active table-responsive-sm" id="tab-activities" role="tabpanel" aria-labelledby="activities-tab"></div>
-              <div class="tab-pane fade table-responsive-sm" id="tab-constraints" role="tabpanel" aria-labelledby="constraints-tab"></div>
-          </div>
-      </div>
-      <div class="sidepanel-menu activity-menu" style="display: none;">
-          <div class="header">
-              <h5>Activity <span class="activity-id"></span></h5>
-          </div>
-          <div class="body">
-              <div class="form-group">
-                  <label for="activity-name">Name:</label>
-                  <input type="text" class="form-control activity-name">
-              </div>
-          </div>
-          <div class="footer">
-              <button type="button" class="btn btn-danger btn-sm btn-block delete-activity">
-                  <i class="icon fas fa-trash"></i> Delete
-              </button>
-          </div>
-      </div>
+    <div class="sidepanel-menu global-menu">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="activities-tab" data-bs-toggle="tab" data-bs-target="#activities-tab-pane" type="button" role="tab" aria-controls="activities-tab-pane" aria-selected="true">Activities <span id="num-activities" class="badge badge-pill badge-light"></span></button>
+                
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="constraints-tab" data-bs-toggle="tab" data-bs-target="#constraints-tab-pane" type="button" role="tab" aria-controls="constraints-tab-pane" aria-selected="false">Constraints <span id="num-constraints" class="badge badge-pill badge-light"></span></button>
+                
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="activities-tab-pane" role="tabpanel" aria-labelledby="activities-tab" tabindex="0"></div>
+            <div class="tab-pane fade" id="constraints-tab-pane" role="tabpanel" aria-labelledby="constraints-tab" tabindex="0"></div>
+        </div>
+    </div>
 
-      <div class="sidepanel-menu constraint-menu" style="display: none;">
-          <div class="header">
-              <h5>Constraint <span class="constraint-id"></span></h5>
-          </div>
-          <div class="params">
-              <div class="p1">
-                  <span class="param-name">(A)</span>
-                  <span class="param-value"></span> 
-              </div>
-              <div class="p2">
-                  <span class="param-name">(B)</span>
-                  <span class="param-value"></span> 
-              </div>
-              <div class="swap-btn">
-                  <button type="button" class="btn btn-sm btn-outline-dark">
-                      <i class="fas fa-retweet"></i>
-                  </button>
-              </div>
-          </div>
-          <div class="body"></div>
-          <div class="footer">
-              <button type="button" class="btn btn-danger btn-sm btn-block delete-constraint">
-                  <i class="icon fas fa-trash"></i> Delete
-              </button>
-          </div>
-      </div>
+    <div class="sidepanel-menu activity-menu" style="display: none;">
+        <div class="header">
+            <h5>Activity <span class="activity-id-label">ID: </span><span class="activity-id"></span></h5>
+        </div>
+        <div class="body">
+            <div class="mb-3">
+                <label for="activity-name" class="form-label">Activity Name</label>
+                <input type="text" class="form-control activity-name" id="activity-name">
+            </div>
+
+            <hr>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="absenceCheckbox">
+                <label class="form-check-label" for="absenceCheckbox">Absence</label>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="existenceCheckbox">
+                <label class="form-check-label" for="existenceCheckbox">Existence</label>
+                <div class="input-group input-group-sm mb-3" id="existenceValues">
+                    <input type="text" class="form-control" id="existenceMinValue" placeholder="Min" aria-label="Min">
+                    <span class="input-group-text"><b>...</b></span>
+                    <input type="text" class="form-control" id="existenceMaxValue" placeholder="Max" aria-label="Max">
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <button type="button" class="btn btn-danger btn-sm btn-block delete-activity">
+                <i class="icon fas fa-trash"></i> Delete
+            </button>
+        </div>
+    </div>
+
+    <div class="sidepanel-menu constraint-menu" style="display: none;">
+        <div class="header">
+            <h5>Constraint <span class="constraint-id-label">ID: </span><span class="constraint-id"></span></h5>
+        </div>
+        <div class="params">
+            <div class="p1">
+                <span class="param-name">(A)</span>
+                <span class="param-value"></span> 
+            </div>
+            <div class="p2">
+                <span class="param-name">(B)</span>
+                <span class="param-value"></span> 
+            </div>
+            <div class="swap-btn">
+                <button type="button" class="btn btn-sm btn-outline-dark">
+                    <i class="fas fa-retweet"></i>
+                </button>
+            </div>
+        </div>
+        <div class="body"></div>
+        <div class="footer">
+            <button type="button" class="btn btn-danger btn-sm btn-block delete-constraint">
+                <i class="icon fas fa-trash"></i> Delete
+            </button>
+        </div>
+    </div>
+
   </div>
+
+
 
   <div id="footer">
       <div id="app-version">Verto Designer v<%= htmlWebpackPlugin.options.version %></div>

@@ -38,6 +38,22 @@ export default class Sidepanel {
         const name = d3.select(this).property('value')
         activity.setName(name)
       })
+
+    this.activityMenu.select('#absenceCheckbox').on('change', (event) => {
+      const selected = d3.select(event.srcElement).property('checked')
+      if (selected) this.activityMenu.select('#existenceCheckbox').property('checked', false)
+    })
+    this.activityMenu.select('#existenceCheckbox').on('change', (event) => {
+      const selected = d3.select(event.srcElement).property('checked')
+      if (selected) this.activityMenu.select('#absenceCheckbox').property('checked', false)
+    })
+    this.activityMenu.select('#existenceMinValue').on('keyup', function () {
+      const minValue = d3.select(this).property('value')
+    })
+    this.activityMenu.select('#existenceMaxValue').on('keyup', function () {
+      const maxValue = d3.select(this).property('value')
+    })
+
     this.activityMenu.style('display', null)
   }
 
@@ -80,11 +96,11 @@ export default class Sidepanel {
   updateGlobalMenu () {
     const activities = window.app.data.getActivities()
     this.counterActivities.text((activities.length === 0) ? '' : activities.length)
-    this.globalMenu.select('.tab-content #tab-activities').selectAll('*').remove()
-    const activitiesTable = this.globalMenu.select('.tab-content #tab-activities').append('table').attr('class', 'table table-sm')
+    this.globalMenu.select('#activities-tab-pane').selectAll('*').remove()
+    const activitiesTable = this.globalMenu.select('#activities-tab-pane').append('table').attr('class', 'table table-sm')
     activitiesTable.append('thead').append('tr')
       .selectAll('th')
-      .data(['Id', 'Name'])
+      .data(['Activity Id', 'Activity Name', 'Edit'])
       .enter()
       .append('th')
       .attr('scope', 'col')
@@ -98,18 +114,19 @@ export default class Sidepanel {
         const tr = d3.select(this)
           .on('mouseover', () => d.highlight(true))
           .on('mouseout', () => d.highlight(false))
-          .on('click', () => window.app.data.selectElement(d.id))
+          // .on('click', () => window.app.data.selectElement(d.id))
         tr.append('td').attr('scope', 'row').text(d.id)
         tr.append('td').text(d.name)
+        tr.append('td').attr('class', 'edit').append('i').attr('class', 'fas fa-pen').on('click', () => window.app.data.selectElement(d.id))
       })
 
     const constraints = window.app.data.getConstraints()
     this.counterConstraints.text((constraints.length === 0) ? '' : constraints.length)
-    this.globalMenu.select('.tab-content #tab-constraints').selectAll('*').remove()
-    const constraintsTable = this.globalMenu.select('.tab-content #tab-constraints').append('table').attr('class', 'table table-sm')
+    this.globalMenu.select('#constraints-tab-pane').selectAll('*').remove()
+    const constraintsTable = this.globalMenu.select('#constraints-tab-pane').append('table').attr('class', 'table table-sm')
     constraintsTable.append('thead').append('tr')
       .selectAll('th')
-      .data(['Id', 'Type', 'Param1', 'Param2'])
+      .data(['Id', 'Type', 'Param1', 'Param2', 'Edit'])
       .enter()
       .append('th')
       .attr('scope', 'col')
@@ -123,11 +140,12 @@ export default class Sidepanel {
         const tr = d3.select(this)
           .on('mouseover', () => d.highlight(true))
           .on('mouseout', () => d.highlight(false))
-          .on('click', () => window.app.data.selectElement(d.id))
+          // .on('click', () => window.app.data.selectElement(d.id))
         tr.append('td').attr('scope', 'row').text(d.id)
         tr.append('td').text(d.type.name)
         tr.append('td').text(d.getSourceActivity().name)
         tr.append('td').text(d.getTargetActivity().name)
+        tr.append('td').attr('class', 'edit').append('i').attr('class', 'fas fa-pen').on('click', () => window.app.data.selectElement(d.id))
       })
   }
 }

@@ -34,12 +34,18 @@
   max-height: 100%;
 }
 
-#sidepanel .global-menu .tab-content table{
+#sidepanel .global-menu .tab-content table {
   width: 100%;
+  cursor: default;
+}
+
+.edit {
+  cursor: pointer;
 }
 
 #tab-activities tr:hover{
-  background: #F5F5F6;
+  background: red;
+
 }
 
 #tab-constraints tr:hover{
@@ -68,6 +74,12 @@
   grid-area: header;
 }
 
+#sidepanel .activity-menu .header .activity-id-label{
+  font-family: monospace;
+  font-weight: 100;
+  font-size: small;
+}
+
 #sidepanel .activity-menu .header .activity-id{
   font-family: monospace;
   font-weight: 100;
@@ -81,8 +93,17 @@
 #sidepanel .activity-menu .body input[type=text]{
   font-family: monospace;
   font-size: small;
-  
 }
+
+#sidepanel .activity-menu .body .form-check-label{
+  font-family: monospace;
+  font-weight: 100;
+  font-size: small;
+}
+
+
+
+
 
 #sidepanel .activity-menu .footer{
   grid-area: footer;
@@ -109,6 +130,12 @@
 #sidepanel .constraint-menu .header{
   grid-area: header;
   border-bottom: solid 1px darkgray;
+}
+
+#sidepanel .constraint-menu .header .constraint-id-label{
+  font-family: monospace;
+  font-weight: 100;
+  font-size: small;
 }
 
 #sidepanel .constraint-menu .header .constraint-id{
@@ -184,4 +211,22 @@
 
 #sidepanel .constraint-menu .footer{
   grid-area: footer;
+}
+
+.btn.delete-constraint {
+  width: 100%;
+}
+
+.btn.delete-activity {
+  width: 100%;
+}
+
+#num-activities {
+  color: black;
+  background: lightblue;
+}
+
+#num-constraints {
+  color: black;
+  background: lightblue;
 }

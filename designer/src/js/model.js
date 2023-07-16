@@ -4,7 +4,6 @@ import { getConstraintType } from './constraintTypes'
 
 class Model {
   constructor (str) {
-    console.log(str, this.constructor.name)
     this.data = {
       id: null,
       name: null,
