@@ -1,10 +1,9 @@
-import ControlBar from './controlbar'
+import NavBar from './navbar'
 import Data from './data'
 import Canvas from './canvas'
 import Sidepanel from './sidepanel'
 import Import from './import'
 import Export from './export'
-import { getConstraintType } from './constraintTypes'
 
 export default class App {
   constructor () {
@@ -19,7 +18,7 @@ export default class App {
   init (model) {
     this.data = new Data()
     this.canvas = new Canvas()
-    this.controlBar = new ControlBar(this)
+    this.navbar = new NavBar()
     this.sidepanel = new Sidepanel()
     this.import = new Import()
     this.export = new Export()
@@ -29,14 +28,24 @@ export default class App {
 
     if (model === undefined) model = this.data.loadModelFromCache()
     if (model !== undefined && model !== null) {
-      model.data.activities.forEach(a => {
-        this.data.createActivity(a.id, { x: a.x, y: a.y }).setName(a.name)
+      this.data.modelId = model.id()
+      this.data.modelName = model.name()
+
+      model.activities().forEach(a => {
+        const id = a.activityId()
+        const x = a.x()
+        const y = a.y()
+        const name = a.activityName()
+        this.data.createActivity(id, { x, y }).setName(name)
       })
-      model.data.constraints.forEach(c => {
-        const sourceId = (c.sourceActivityId == null || c.sourceActivityId === '') ? this.data.getActivitiesFromName(c.sourceActivityName) : c.sourceActivityId
-        const targetId = (c.targetActivityId == null || c.targetActivityId === '') ? this.data.getActivitiesFromName(c.targetActivityName) : c.targetActivityId
-        const type = getConstraintType(c.xmlName)
-        this.data.createConstraint(c.id, sourceId, targetId, type)
+
+      model.constraints().forEach(c => {
+        const id = c.constraintId()
+        const sourceId = c.sourceActivityId()
+        const targetId = c.targetActivityId()
+        const name = c.constraintName()
+        const props = c.props()
+        this.data.createConstraint(id, sourceId, targetId, name, props)
       })
     }
   }

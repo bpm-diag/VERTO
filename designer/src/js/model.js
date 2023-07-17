@@ -338,18 +338,21 @@ class ConstraintModel {
     this.y = null
 
     if (constraint instanceof Constraint) {
+      // console.log(constraint)
       const sourceActivity = constraint.getSourceActivity()
       const targetActivity = constraint.getTargetActivity()
-      const iconPosition = constraint.svg.iconPositioner(sourceActivity.getAnchors().center, targetActivity.getAnchors().center)
+      const position = constraint.getPosition()
+      // const iconPosition = (targetActivity === null) ? { x: 0, y: 0 } : constraint.svg.iconPositioner(sourceActivity.getAnchors().center, targetActivity.getAnchors().center)
       this.id = constraint.id
       this.type = constraint.type
       this.xmlName = constraint.type.xmlName
       this.sourceActivityId = sourceActivity.id
       this.sourceActivityName = sourceActivity.name
-      this.targetActivityId = targetActivity.id
-      this.targetActivityName = targetActivity.name
-      this.x = iconPosition.x
-      this.y = iconPosition.y
+      this.targetActivityId = (targetActivity === null) ? null : targetActivity.id
+      this.targetActivityName = (targetActivity === null) ? null : targetActivity.name
+      this.x = position.x
+      this.y = position.y
+      this.props = constraint.props
     } else if (typeof constraint === 'string') { // from json parser
       constraint = JSON.parse(constraint)
       this.id = constraint.id
@@ -361,6 +364,7 @@ class ConstraintModel {
       this.targetActivityName = constraint.targetActivityName
       this.x = constraint.graphical.x
       this.y = constraint.graphical.y
+      this.props = constraint.props
     } else if (constraint instanceof Map) { // from xml parser
       this.id = constraint.get('id')
       this.type = getConstraintType(constraint.get('xmlName'))
@@ -371,6 +375,7 @@ class ConstraintModel {
       this.targetActivityId = constraint.get('targetActivityId')
       this.x = constraint.get('x')
       this.y = constraint.get('y')
+      this.props = constraint.props
     } else {
       console.error('Not a valid input file.', constraint)
       throw new Error('Not a valid input file.', constraint)
@@ -402,6 +407,7 @@ class ConstraintModel {
       sourceActivityName: this.sourceActivityName,
       targetActivityId: this.targetActivityId,
       targetActivityName: this.targetActivityName,
+      props: this.props,
       graphical: {
         x: this.x,
         y: this.y

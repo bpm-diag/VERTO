@@ -2,6 +2,7 @@ import * as d3 from 'd3'
 import tippy from 'tippy.js'
 import 'tippy.js/dist/tippy.css' // optional for styling
 import '../styles/activity.scss'
+import { VERTOActivityModel } from './model/verto'
 
 export default class Activity {
   constructor (id, position) {
@@ -17,14 +18,14 @@ export default class Activity {
       * Private fields.
       */
     this._size = {
-      width: 140,
-      height: 80,
+      width: 120,
+      height: 60,
       minWidth: 50,
       minHeight: 50,
       handles: 15,
       border: 2,
       borderRadious: 5,
-      text: 10,
+      text: 8,
       link: 3,
       absenceBox: {
         width: 50,
@@ -236,28 +237,6 @@ export default class Activity {
       .attr('text-anchor', 'middle')
       .attr('alignment-baseline', 'middle')
       .text('1...X')
-
-    /*
-    this._svg.existenceBox.rect = this._svg.g.append('rect')
-      .attr('class', 'existence-box')
-      .attr('width', this._size.existenceBox.width)
-      .attr('height', this._size.existenceBox.height)
-      .attr('x', this._size.border + (this._size.width - this._size.existenceBox.width) / 2)
-      .attr('y', this._size.border - (this._size.existenceBox.height) / 2)
-      .attr('rx', this._size.borderRadious - 1)
-      .attr('ry', this._size.borderRadious - 1)
-
-    this._svg.existenceBox.text = this._svg.g.append('text')
-      .attr('class', 'existence-box-text')
-      .attr('width', this._size.existenceBox.width)
-      .attr('height', this._size.existenceBox.height)
-      .attr('x', (this._size.border + (this._size.width - this._size.existenceBox.width) / 2) + (this._size.existenceBox.width / 2))
-      .attr('y', (-this._size.border - (this._size.existenceBox.height) / 2) + (this._size.existenceBox.height / 2))
-      .attr('font-size', this._size.existenceBox.text)
-      .attr('text-anchor', 'middle')
-      .attr('alignment-baseline', 'middle')
-      .text('1...X')
-      */
 
     this._createHandles()
     // this._createTooltip();
@@ -580,7 +559,7 @@ export default class Activity {
     this._tempLink.remove()
     if (this._tempLinkDestination !== undefined) {
       this._tempLinkDestination._showDragBorder(false)
-      window.app.data.createConstraint(null, this.id, this._tempLinkDestination.id, undefined, true)
+      window.app.data.createConstraint(null, this.id, this._tempLinkDestination.id, undefined, {}, true)
       this._tempLink = undefined
       this._tempLinkDestination = undefined
     }
@@ -660,13 +639,37 @@ export default class Activity {
   *
   */
   addConstraint (constraintId) {
+    const constraint = window.app.data.getConstraint(constraintId)
+    if (constraint.targetId === null) {
+      if (constraint.type.name === 'Absence') this.showAbsenceBox(true, constraint)
+      if (constraint.type.name === 'Existence') this.showExistenceBox(true, constraint)
+    }
+
     this.constraints.add(constraintId)
     return this
   }
 
   removeConstraint (constraintId) {
+    const constraint = window.app.data.getConstraint(constraintId)
+    if (constraint.targetId === null) {
+      if (constraint.type.name === 'Absence') this.showAbsenceBox(false)
+      if (constraint.type.name === 'Existence') this.showExistenceBox(false)
+    }
+
     this.constraints.delete(constraintId)
     return this
+  }
+
+  constraintPropertiesUpdated (constraintId, key, value) {
+    const constraint = window.app.data.getConstraint(constraintId)
+    if (constraint.type.name === 'Existence' && key === 'min') {
+      const max = constraint.getProperty('max')
+      this._svg.existenceBox.text.text(`${value}...${max}`)
+    }
+    if (constraint.type.name === 'Existence' && key === 'max') {
+      const min = constraint.getProperty('min')
+      this._svg.existenceBox.text.text(`${min}...${value}`)
+    }
   }
 
   _isPointInside (x, y) {
@@ -690,6 +693,19 @@ export default class Activity {
     if (bool) this._svg.g.transition().style('opacity', 0.2)
     else this._svg.g.transition().style('opacity', 1)
     return this
+  }
+
+  showExistenceBox (bool, constraint) {
+    this._svg.existenceBox.g.style('display', bool ? null : 'none')
+    if (bool) {
+      const min = constraint.getProperty('min', '0')
+      const max = constraint.getProperty('max', 'N')
+      this._svg.existenceBox.text.text(`${min}...${max}`)
+    }
+  }
+
+  showAbsenceBox (bool) {
+    this._svg.absenceBox.g.style('display', bool ? null : 'none')
   }
 
   setName (name) {
@@ -716,5 +732,18 @@ export default class Activity {
 
   afterUpdate () {
     window.app.data.saveModelToCache()
+  }
+
+  toVERTOActivityModel () {
+    const model = new VERTOActivityModel()
+
+    model.activityId(this.id)
+      .activityName(this.name)
+      .x(this._svg.x)
+      .y(this._svg.y)
+      .width(this._size.width)
+      .height(this._size.height)
+
+    return model
   }
 }

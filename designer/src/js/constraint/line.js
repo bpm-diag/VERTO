@@ -1,13 +1,13 @@
 import * as d3 from 'd3'
 import tippy from 'tippy.js'
-import constraintTypes from './constraintTypes'
+import constraintTypes, { getConstraintType } from '../constraintTypes'
 import 'tippy.js/dist/tippy.css' // optional for styling
-import '../styles/constraint.scss'
+import '../../styles/constraint.scss'
 
-export default class Constraint {
+export default class ConstraintLine {
   constructor (id, sourceId, targetId, type) {
     this.id = id
-    this.type = (type === undefined) ? constraintTypes.Relation.Response : type
+    this.type = (type === undefined) ? constraintTypes.Relation.Response : getConstraintType(type)
     this.sourceId = sourceId
     this.targetId = targetId
     this.selected = false
@@ -68,6 +68,7 @@ export default class Constraint {
   }
 
   getTargetActivity () {
+    if (this.targetId === null) return null
     return window.app.data.getActivity(this.targetId)
   }
 

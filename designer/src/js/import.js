@@ -1,6 +1,7 @@
 import * as d3 from 'd3'
 import * as $ from 'jquery'
-import { JSONModel, XMLModel } from './model'
+// import { JSONModel, XMLModel } from './model'
+import { VERTOModel } from './model/verto'
 import lockUI from './lockUI'
 import '../styles/import.scss'
 
@@ -62,11 +63,11 @@ export default class Import {
         const fileContent = e.target.result
         let model = null
         try {
-          if (fileName.endsWith('.json')) model = new JSONModel(fileContent)
-          if (fileName.endsWith('.xml')) model = new XMLModel(fileContent)
+          if (fileName.endsWith('.vrt')) model = VERTOModel.fromString(fileContent)
+          // if (fileName.endsWith('.xml')) model = new XMLModel(fileContent)
         } catch (exception) {
           model = null
-          console.log(exception)
+          console.error(exception)
         }
         lockUI.unlock()
         if (model == null) alert('Not a valid input file.')

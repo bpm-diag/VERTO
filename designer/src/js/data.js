@@ -2,17 +2,19 @@ import { v4 as uuidv4 } from 'uuid'
 import * as d3 from 'd3'
 import Activity from './activity'
 import Constraint from './constraint'
-import { JSONModel, XMLModel } from './model'
+// import { JSONModel, XMLModel } from './model'
+import { VERTOModel } from './model/verto'
+import packageJson from '../../package.json'
 
 export default class Data {
   constructor (_app) {
     this.app = _app
     this.modelId = uuidv4()
-    this.modelName = 'verto'
+    this.modelName = 'model'
     this.activities = {}
     this.constraints = {}
     this.selectedElement = null
-    this.cacheKey = 'vertoDesignerModel'
+    this.cacheKey = `VertoDesignerModel-v${packageJson.version}`
 
     d3.select(document).on('keyup.app_data', (event) => {
       const e = event
@@ -43,7 +45,7 @@ export default class Data {
   generateActivityID () {
     let i = 0
     while (true) {
-      const id = `A-${i}`
+      const id = `A${i}`
       let found = false
       for (const key in this.activities) {
         if (this.activities[key].id === id) {
@@ -59,7 +61,7 @@ export default class Data {
   generateConstraintID () {
     let i = 0
     while (true) {
-      const id = `C-${i}`
+      const id = `C${i}`
       let found = false
       for (const key in this.constraints) {
         if (this.constraints[key].id === id) {
@@ -137,7 +139,9 @@ export default class Data {
   CONSTRAINTS
   */
   getConstraints () {
-    const list = Object.values(this.constraints).sort((a, b) => a.type.name.localeCompare(b.type.name))
+    const list = Object.values(this.constraints).sort((a, b) => {
+      return a.type.name.localeCompare(b.type.name)
+    })
     return (list == null) ? [] : list
   }
 
@@ -150,12 +154,16 @@ export default class Data {
       .filter(c => { return c.sourceId === activityId || c.targetId === activityId })
   }
 
-  createConstraint (id, sourceId, targetId, type, select = false) {
+  createConstraint (id, sourceId, targetId, type, props = {}, select = false) {
     if (id === undefined || id === null) id = this.generateConstraintID()
-    this.constraints[id] = new Constraint(id, sourceId, targetId, type)
+
+    // targetId is null or undefined in case of a single activity constraints (e.g., Absence)
+    if (targetId === undefined) targetId = null
+
+    this.constraints[id] = new Constraint(id, sourceId, targetId, type, props)
     this.getActivity(sourceId).addConstraint(id)
-    this.getActivity(targetId).addConstraint(id)
-    if (select) this.selectElement(id)
+    if (targetId !== null) this.getActivity(targetId).addConstraint(id) // targetId is null in case of a single activity constraints (e.g., Absence)
+    if (select && targetId !== null) this.selectElement(id)
     this.saveModelToCache()
     window.app.sidepanel.updateGlobalMenu()
     return this.constraints[id]
@@ -165,7 +173,7 @@ export default class Data {
     const c = this.getConstraint(constraintId)
     if (c.id === this.selectedElement) this.selectedElement = null
     this.activities[c.sourceId].removeConstraint(c.id)
-    this.activities[c.targetId].removeConstraint(c.id)
+    if (c.targetId !== null) this.activities[c.targetId].removeConstraint(c.id)
     c.delete()
     delete this.constraints[constraintId]
     this.saveModelToCache()
@@ -201,6 +209,7 @@ export default class Data {
     if (this.selectedElement != null) this.getElement(this.selectedElement).setSelected(false)
     this.selectedElement = elementId
     const element = this.getElement(elementId).setSelected(true)
+    // console.log(elementId, element)
     if (element instanceof Activity) window.app.sidepanel.showActivityMenu(element)
     if (element instanceof Constraint) window.app.sidepanel.showConstraintMenu(element)
     return this
@@ -217,9 +226,20 @@ export default class Data {
 
   }
 
+  toVERTOModel () {
+    const model = new VERTOModel()
+
+    model.id(this.modelId)
+      .name(this.modelName)
+      .activities(this.getActivities().map(a => a.toVERTOActivityModel()))
+      .constraints(this.getConstraints().map(c => c.toVERTOConstraintModel()))
+
+    return model
+  }
+
   /*
   MODEL
-  */
+
   getXML () {
     const id = this.modelId
     const name = this.modelName
@@ -237,13 +257,14 @@ export default class Data {
     const model = new JSONModel().id(id).name(name).activities(activities).constraints(constraints)
     return model.toString()
   }
+  */
 
   loadModelFromCache () {
     let model = null
     const str = window.localStorage.getItem(this.cacheKey)
     if (str == null) return null
     try {
-      model = new JSONModel(str)
+      model = VERTOModel.fromString(str)
     } catch (exception) {
       console.warn(exception)
       this.clearCache()
@@ -252,7 +273,8 @@ export default class Data {
   }
 
   saveModelToCache () {
-    const str = this.getJson()
+    const model = this.toVERTOModel()
+    const str = model.toString()
     window.localStorage.setItem(this.cacheKey, str)
   }
 

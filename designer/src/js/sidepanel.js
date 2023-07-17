@@ -33,26 +33,59 @@ export default class Sidepanel {
         this.showGlobalMenu()
       })
     this.activityMenu.select('.activity-name')
+      .property('pattern', '[A-Za-z0-9]+')
       .property('value', activity.name)
       .on('keyup', function () {
         const name = d3.select(this).property('value')
         activity.setName(name)
       })
 
-    this.activityMenu.select('#absenceCheckbox').on('change', (event) => {
-      const selected = d3.select(event.srcElement).property('checked')
-      if (selected) this.activityMenu.select('#existenceCheckbox').property('checked', false)
-    })
-    this.activityMenu.select('#existenceCheckbox').on('change', (event) => {
-      const selected = d3.select(event.srcElement).property('checked')
-      if (selected) this.activityMenu.select('#absenceCheckbox').property('checked', false)
-    })
-    this.activityMenu.select('#existenceMinValue').on('keyup', function () {
-      const minValue = d3.select(this).property('value')
-    })
-    this.activityMenu.select('#existenceMaxValue').on('keyup', function () {
-      const maxValue = d3.select(this).property('value')
-    })
+    const absenceConstraintArr = [...activity.getConstraints().values()].map(cId => window.app.data.getConstraint(cId)).filter(c => c.type.name === 'Absence')
+    let absenceConstraint = absenceConstraintArr.length > 0 ? absenceConstraintArr[0] : null
+
+    const existenceConstraintArr = [...activity.getConstraints().values()].map(cId => window.app.data.getConstraint(cId)).filter(c => c.type.name === 'Existence')
+    let existenceConstraint = existenceConstraintArr.length > 0 ? existenceConstraintArr[0] : null
+
+    this.activityMenu.select('#absenceCheckbox')
+      .property('checked', absenceConstraint !== null)
+      .on('change', (event) => {
+        const selected = d3.select(event.srcElement).property('checked')
+        if (selected) {
+          absenceConstraint = window.app.data.createConstraint(null, activity.id, null, 'Absence')
+        } else {
+          window.app.data.deleteConstraint(absenceConstraint.id)
+        }
+        // if (selected) this.activityMenu.select('#existenceCheckbox').property('checked', false)
+      })
+    this.activityMenu.select('#existenceCheckbox')
+      .property('checked', existenceConstraint !== null)
+      .on('change', (event) => {
+        const selected = d3.select(event.srcElement).property('checked')
+        if (selected) {
+          this.activityMenu.select('#existenceMinValue').property('disabled', false)
+          this.activityMenu.select('#existenceMaxValue').property('disabled', false)
+          existenceConstraint = window.app.data.createConstraint(null, activity.id, null, 'Existence')
+        } else {
+          this.activityMenu.select('#existenceMinValue').property('disabled', true)
+          this.activityMenu.select('#existenceMaxValue').property('disabled', true)
+          window.app.data.deleteConstraint(existenceConstraint.id)
+        }
+        // if (selected) this.activityMenu.select('#absenceCheckbox').property('checked', false)
+      })
+    this.activityMenu.select('#existenceMinValue')
+      .property('disabled', existenceConstraint === null)
+      .property('value', existenceConstraint !== null ? existenceConstraint.getProperty('min') : '')
+      .on('keyup', function () {
+        const minValue = d3.select(this).property('value')
+        existenceConstraint.setProperty('min', minValue)
+      })
+    this.activityMenu.select('#existenceMaxValue')
+      .property('disabled', existenceConstraint === null)
+      .property('value', existenceConstraint !== null ? existenceConstraint.getProperty('max') : '')
+      .on('keyup', function () {
+        const maxValue = d3.select(this).property('value')
+        existenceConstraint.setProperty('max', maxValue)
+      })
 
     this.activityMenu.style('display', null)
   }
@@ -74,15 +107,16 @@ export default class Sidepanel {
 
     this.constraintMenu.select('.body').selectAll('*').remove()
     Object.keys(constraintTypes).forEach(groupName => {
+      if (groupName === 'Activity Existence') return
       const div = this.constraintMenu.select('.body')
         .append('div').attr('class', 'row')
       div.append('div').attr('class', 'col-12 constraint-group-name').text(groupName)
       div.selectAll('.constraint-type')
-        .data(Object.values(constraintTypes[groupName]))
+        .data(Object.values(constraintTypes[groupName]).map(C => new C()))
         .enter()
         .append('div').attr('class', 'col-12 constraint-type')
         .append('input').attr('type', 'radio').attr('name', 'constraint-type')
-        .attr('checked', d => constraint.type.xmlName === d.xmlName ? true : null)
+        .attr('checked', d => constraint.name === d.name ? true : null)
         .property('value', d => d.xmlName)
         .select(function () { return this.parentNode })
         .append('span').text(d => d.toString())
@@ -144,128 +178,13 @@ export default class Sidepanel {
         tr.append('td').attr('scope', 'row').text(d.id)
         tr.append('td').text(d.type.name)
         tr.append('td').text(d.getSourceActivity().name)
-        tr.append('td').text(d.getTargetActivity().name)
-        tr.append('td').attr('class', 'edit').append('i').attr('class', 'fas fa-pen').on('click', () => window.app.data.selectElement(d.id))
+        tr.append('td').text(d.getTargetActivity() === null ? '---' : d.getTargetActivity().name)
+
+        if (d.getTargetActivity() === null) {
+          tr.append('td').text('')
+        } else {
+          tr.append('td').attr('class', 'edit').append('i').attr('class', 'fas fa-pen').on('click', () => window.app.data.selectElement(d.id))
+        }
       })
   }
 }
-
-/*
-<table class="table">
-<thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">First</th>
-    <th scope="col">Last</th>
-    <th scope="col">Handle</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-  </tr>
-  <tr>
-    <th scope="row">2</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-  </tr>
-  <tr>
-    <th scope="row">3</th>
-    <td>Larry</td>
-    <td>the Bird</td>
-    <td>@twitter</td>
-  </tr>
-</tbody>
-</table>
-
-<table class="table" data-filtering="true">
-<thead>
-<tr>
-  <th data-breakpoints="xs">ID</th>
-  <th>First Name</th>
-  <th>Last Name</th>
-  <th data-breakpoints="xs">Job Title</th>
-  <th data-breakpoints="xs sm">Started On</th>
-  <th data-breakpoints="xs sm md">Date of Birth</th>
-  <th data-type="html" data-breakpoints="xs sm md">Info</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>1</td>
-  <td>Dennise</td>
-  <td>Fuhrman</td>
-  <td>High School History Teacher</td>
-  <td>November 8th 2011</td>
-  <td>July 25th 1960</td>
-  <td><a href="#placeholder">Info link</a></td>
-</tr>
-<tr>
-  <td>2</td>
-  <td>Elodia</td>
-  <td>Weisz</td>
-  <td>Wallpaperer Helper</td>
-  <td>October 15th 2010</td>
-  <td>March 30th 1982</td>
-  <td><a href="#placeholder">Info link</a></td>
-</tr>
-<tr>
-  <td>3</td>
-  <td>Raeann</td>
-  <td>Haner</td>
-  <td>Internal Medicine Nurse Practitioner</td>
-  <td>November 28th 2013</td>
-  <td>February 26th 1966</td>
-  <td><a href="#placeholder">Info link</a></td>
-</tr>
-<tr>
-  <td>4</td>
-  <td>Junie</td>
-  <td>Landa</td>
-  <td>Offbearer</td>
-  <td>October 31st 2010</td>
-  <td>March 29th 1966</td>
-  <td><a href="#placeholder">Info link</a></td>
-</tr>
-<tr>
-  <td>5</td>
-  <td>Solomon</td>
-  <td>Bittinger</td>
-  <td>Roller Skater</td>
-  <td>December 29th 2011</td>
-  <td>September 22nd 1964</td>
-  <td><a href="#placeholder">Info link</a></td>
-</tr>
-<tr>
-  <td>6</td>
-  <td>Bar</td>
-  <td>Lewis</td>
-  <td>Clown</td>
-  <td>November 12th 2012</td>
-  <td>August 4th 1991</td>
-  <td><a href="#placeholder">Info link</a></td>
-</tr>
-<tr>
-  <td>7</td>
-  <td>Usha</td>
-  <td>Leak</td>
-  <td>Ships Electronic Warfare Officer</td>
-  <td>August 14th 2012</td>
-  <td>November 20th 1979</td>
-  <td><a href="#placeholder">Info link</a></td>
-</tr>
-<tr>
-  <td>8</td>
-  <td>Lorriane</td>
-  <td>Cooke</td>
-  <td>Technical Services Librarian</td>
-  <td>September 21st 2010</td>
-  <td>April 7th 1969</td>
-  <td><a href="#placeholder">Info link</a></td>
-</tr>
-</tbody>
-</table> */
