@@ -46,6 +46,34 @@ export default class Sidepanel {
     const existenceConstraintArr = [...activity.getConstraints().values()].map(cId => window.app.data.getConstraint(cId)).filter(c => c.type.name === 'Existence')
     let existenceConstraint = existenceConstraintArr.length > 0 ? existenceConstraintArr[0] : null
 
+    const initConstraintArr = [...activity.getConstraints().values()].map(cId => window.app.data.getConstraint(cId)).filter(c => c.type.name === 'Init')
+    let initConstraint = initConstraintArr.length > 0 ? initConstraintArr[0] : null
+
+    const endConstraintArr = [...activity.getConstraints().values()].map(cId => window.app.data.getConstraint(cId)).filter(c => c.type.name === 'End')
+    let endConstraint = endConstraintArr.length > 0 ? endConstraintArr[0] : null
+
+    this.activityMenu.select('#initCheckbox')
+      .property('checked', initConstraint !== null)
+      .on('change', (event) => {
+        const selected = d3.select(event.srcElement).property('checked')
+        if (selected) {
+          initConstraint = window.app.data.createConstraint(null, activity.id, null, 'Init')
+        } else {
+          window.app.data.deleteConstraint(initConstraint.id)
+        }
+      })
+
+    this.activityMenu.select('#endCheckbox')
+      .property('checked', endConstraint !== null)
+      .on('change', (event) => {
+        const selected = d3.select(event.srcElement).property('checked')
+        if (selected) {
+          endConstraint = window.app.data.createConstraint(null, activity.id, null, 'End')
+        } else {
+          window.app.data.deleteConstraint(endConstraint.id)
+        }
+      })
+
     this.activityMenu.select('#absenceCheckbox')
       .property('checked', absenceConstraint !== null)
       .on('change', (event) => {
@@ -55,7 +83,6 @@ export default class Sidepanel {
         } else {
           window.app.data.deleteConstraint(absenceConstraint.id)
         }
-        // if (selected) this.activityMenu.select('#existenceCheckbox').property('checked', false)
       })
     this.activityMenu.select('#existenceCheckbox')
       .property('checked', existenceConstraint !== null)
@@ -108,6 +135,7 @@ export default class Sidepanel {
     this.constraintMenu.select('.body').selectAll('*').remove()
     Object.keys(constraintTypes).forEach(groupName => {
       if (groupName === 'Activity Existence') return
+      if (groupName === 'Activity Role') return
       const div = this.constraintMenu.select('.body')
         .append('div').attr('class', 'row')
       div.append('div').attr('class', 'col-12 constraint-group-name').text(groupName)

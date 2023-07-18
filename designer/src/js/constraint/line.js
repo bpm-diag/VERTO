@@ -1,8 +1,7 @@
 import * as d3 from 'd3'
-import tippy from 'tippy.js'
 import constraintTypes, { getConstraintType } from '../constraintTypes'
-import 'tippy.js/dist/tippy.css' // optional for styling
 import '../../styles/constraint.scss'
+import { straightLine, curveLineA, curveLineB } from './geometry'
 
 export default class ConstraintLine {
   constructor (id, sourceId, targetId, type) {
@@ -11,7 +10,9 @@ export default class ConstraintLine {
     this.sourceId = sourceId
     this.targetId = targetId
     this.selected = false
+    this.lineStyle = 0
 
+    /*
     const rectLineGenerator = d3.line().curve(d3.curveBasis).x(d => d.x).y(d => d.y)
     const smoothLineGenerator = function (source, target) {
       return 'M' + target.x + ',' + target.y +
@@ -19,18 +20,35 @@ export default class ConstraintLine {
               ' ' + (target.x + source.x) / 2 + ',' + source.y +
               ' ' + source.x + ',' + source.y
     }
+    */
+
+    const lineGeneratorFunctions = [
+      (source, target) => straightLine(source, target).path,
+      (source, target) => curveLineA(source, target, this.size.icon * 2.5).path,
+      (source, target) => curveLineB(source, target, this.size.icon * 2.5).path
+    ]
+
+    const iconPositionerFunctions = [
+      (source, target) => straightLine(source, target).midPoint,
+      (source, target) => curveLineA(source, target, this.size.icon * 2.5).midPoint,
+      (source, target) => curveLineB(source, target, this.size.icon * 2.5).midPoint
+    ]
 
     this.svg = {
-      smoothLine: false,
+      // smoothLine: false,
       g: undefined,
       lineGenerator: (source, target) => {
-        if (this.svg.smoothLine) return smoothLineGenerator(source, target)
-        else return rectLineGenerator([source, target])
+        return lineGeneratorFunctions[this.lineStyle](source, target)
+        // if (this.svg.smoothLine) return smoothLineGenerator(source, target)
+        // else return rectLineGenerator([source, target])
       },
       iconPositioner: (source, target) => {
+        const p = iconPositionerFunctions[this.lineStyle](source, target)
         return {
-          x: (source.x + target.x) / 2 - this.size.icon / 2,
-          y: (source.y + target.y) / 2 - this.size.icon / 2
+          x: p.x - this.size.icon / 2,
+          y: p.y - this.size.icon / 2
+          // x: (source.x + target.x) / 2 - this.size.icon / 2,
+          // y: (source.y + target.y) / 2 - this.size.icon / 2
         }
       },
       angle: (source, target) => {
@@ -83,6 +101,7 @@ export default class ConstraintLine {
     this.svg.line = this.svg.g.append('path')
       .attr('class', 'line')
       .attr('stroke-width', this.size.line)
+      .on('click', () => this.onClick())
     this.svg.icon = this.svg.g
       .append('g')
       .attr('class', 'icon')
@@ -93,9 +112,9 @@ export default class ConstraintLine {
       .attr('width', this.size.icon)
       .attr('height', this.size.icon)
       .attr('viewBox', this.type.iconViewBox)
+      .on('click', () => this.onClick())
       .html(this.type.icon)
 
-    // this.createTooltip();
     this.updatePosition()
     return this
   }
@@ -107,30 +126,9 @@ export default class ConstraintLine {
     return this
   }
 
-  createTooltip () {
-    let template = d3.select('#constraint-tooltip-template').node()
-    template = d3.select(template.parentNode.insertBefore(template.cloneNode(true), template.nextSibling))
-    template.attr('id', `tooltip-${this.id}"`)
-    template.select('.constraint-id').text(this.id)
-    template.select('.delete-constraint')
-      .on('click', () => {
-        this.svg.tooltip.hide()
-        window.app.data.deleteConstraint(this.id)
-      })
-
-    this.svg.tooltip = tippy(this.svg.icon.node(), {
-      placement: 'right',
-      interactive: true,
-      arrow: true,
-      delay: [800, 0],
-      content: template.node(),
-      onShow: () => {
-        this.showSelectionBorder(true)
-      },
-      onHide: () => {
-        this.showSelectionBorder(false)
-      }
-    })
+  updateLineStyle (n) {
+    this.lineStyle = n
+    this.updatePosition()
   }
 
   updateType () {

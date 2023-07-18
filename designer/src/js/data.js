@@ -165,6 +165,8 @@ export default class Data {
     if (targetId !== null) this.getActivity(targetId).addConstraint(id) // targetId is null in case of a single activity constraints (e.g., Absence)
     if (select && targetId !== null) this.selectElement(id)
     this.saveModelToCache()
+
+    this.updateConstraintStyles(sourceId, targetId)
     window.app.sidepanel.updateGlobalMenu()
     return this.constraints[id]
   }
@@ -177,6 +179,7 @@ export default class Data {
     c.delete()
     delete this.constraints[constraintId]
     this.saveModelToCache()
+    this.updateConstraintStyles(c.sourceId, c.targetId)
     window.app.sidepanel.updateGlobalMenu()
   }
 
@@ -193,6 +196,14 @@ export default class Data {
     delete this.constraints[constraintId]
     //
     this.createConstraint(constraintId, newSourceId, newTargetId, type, true)
+  }
+
+  updateConstraintStyles (activityId1, activityId2) {
+    if (activityId1 === null || activityId2 === null) return
+    const constraints = Object.values(this.constraints).filter(c => (c.sourceId === activityId1 && c.targetId === activityId2) || (c.sourceId === activityId2 && c.targetId === activityId1))
+    constraints.forEach((c, i) => {
+      c.updateLineStyle(i)
+    })
   }
 
   /*

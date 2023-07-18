@@ -82,6 +82,10 @@ export default class Constraint {
     }
   }
 
+  updateLineStyle (n) {
+    this.viz.updateLineStyle(n)
+  }
+
   toVERTOConstraintModel () {
     const model = new VERTOConstraintModel()
 

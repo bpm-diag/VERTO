@@ -34,7 +34,7 @@
                 <ul class="dropdown-menu">
                   <!--<li><a class="dropdown-item" href="#" id="btn-save-xml">Save to <b>XML</b></a></li>-->
                   <li><a class="dropdown-item" href="#" id="btn-save-vrt">Save to <b>VRT</b></a></li>
-                  <li><a class="dropdown-item" href="#" id="btn-save-rum">Save to <b>RUM</b></a></li>
+                  <!--<li><a class="dropdown-item" href="#" id="btn-save-rum">Save to <b>RUM</b></a></li>-->
                 </ul>
               </li>
               
@@ -98,6 +98,39 @@
             </div>
 
             <hr>
+
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="initCheckbox" value="Init">
+                    <label class="form-check-label" for="initCheckbox">Init</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="endCheckbox" value="option2">
+                    <label class="form-check-label" for="endCheckbox">End</label>
+                </div>
+            </div>
+
+            <hr>
+            
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="absenceCheckbox" value="Init">
+                    <label class="form-check-label" for="absenceCheckbox">Absence</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="existenceCheckbox" value="option2">
+                    <label class="form-check-label" for="existenceCheckbox">Existence</label>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <div class="input-group input-group-sm mb-3" id="existenceValues">
+                        <input type="text" class="form-control" id="existenceMinValue" placeholder="Min" aria-label="Min">
+                        <span class="input-group-text"><b>...</b></span>
+                        <input type="text" class="form-control" id="existenceMaxValue" placeholder="Max" aria-label="Max">
+                    </div>
+                </div>
+            </div>
+            <!---
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="absenceCheckbox">
                 <label class="form-check-label" for="absenceCheckbox">Absence</label>
@@ -112,6 +145,7 @@
                     <input type="text" class="form-control" id="existenceMaxValue" placeholder="Max" aria-label="Max">
                 </div>
             </div>
+            -->
 
         </div>
         <div class="footer">

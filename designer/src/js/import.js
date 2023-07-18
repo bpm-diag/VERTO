@@ -4,6 +4,7 @@ import * as $ from 'jquery'
 import { VERTOModel } from './model/verto'
 import lockUI from './lockUI'
 import '../styles/import.scss'
+import RUMModel from './model/rum/model'
 
 /* global alert, FileReader */
 
@@ -64,6 +65,7 @@ export default class Import {
         let model = null
         try {
           if (fileName.endsWith('.vrt')) model = VERTOModel.fromString(fileContent)
+          else if (fileName.endsWith('.txt')) model = RUMModel.fromString(fileContent)
           // if (fileName.endsWith('.xml')) model = new XMLModel(fileContent)
         } catch (exception) {
           model = null

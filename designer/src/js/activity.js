@@ -28,13 +28,25 @@ export default class Activity {
       text: 8,
       link: 3,
       absenceBox: {
-        width: 50,
+        width: 60,
         height: 20,
         text: 12,
         border: 1
       },
       existenceBox: {
         width: 60,
+        height: 20,
+        text: 12,
+        border: 1
+      },
+      initBox: {
+        width: 40,
+        height: 20,
+        text: 12,
+        border: 1
+      },
+      endBox: {
+        width: 40,
         height: 20,
         text: 12,
         border: 1
@@ -74,6 +86,18 @@ export default class Activity {
         border: undefined
       },
       existenceBox: {
+        g: undefined,
+        rect: undefined,
+        text: undefined,
+        border: undefined
+      },
+      initBox: {
+        g: undefined,
+        rect: undefined,
+        text: undefined,
+        border: undefined
+      },
+      endBox: {
         g: undefined,
         rect: undefined,
         text: undefined,
@@ -162,12 +186,105 @@ export default class Activity {
       .select(function () { return this.parentNode })
       .select(function () { return this.parentNode })
 
+    // existence box
+
+    this._createExistenceBox()
+    this._createAbsenceBox()
+    this._createInitBox()
+    this._createEndBox()
+
+    this._createHandles()
+    // this._createTooltip();
+    this._updateName()
+    return this
+  }
+
+  /// ${-(this._size.border + (this._size.width - this._size.initBox.width) / 2) / 2} ,
+  _createInitBox () {
+    this._svg.initBox.g = this._svg.g.append('g')
+      .attr('class', 'init-box')
+      .attr('transform', `translate(
+        ${0} , 
+        ${-this._size.border + this._size.height - (this._size.initBox.height) / 2})`
+      )
+      .style('display', 'none')
+
+    this._svg.initBox.border = this._svg.initBox.g.append('rect')
+      .attr('class', 'init-box-border')
+      .attr('width', this._size.initBox.width + 2 * this._size.initBox.border)
+      .attr('height', this._size.initBox.height + 2 * this._size.initBox.border)
+      .attr('x', -this._size.initBox.border)
+      .attr('y', -this._size.initBox.border)
+      .attr('rx', this._size.borderRadious - 1)
+      .attr('ry', this._size.borderRadious - 1)
+
+    this._svg.initBox.rect = this._svg.initBox.g.append('rect')
+      .attr('class', 'init-box-rect')
+      .attr('width', this._size.initBox.width)
+      .attr('height', this._size.initBox.height)
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('rx', this._size.borderRadious - 1)
+      .attr('ry', this._size.borderRadious - 1)
+
+    this._svg.initBox.text = this._svg.initBox.g.append('text')
+      .attr('class', 'init-box-text')
+      .attr('width', this._size.initBox.width)
+      .attr('height', this._size.initBox.height)
+      .attr('x', this._size.initBox.width / 2)
+      .attr('y', this._size.initBox.height / 2)
+      .attr('font-size', this._size.initBox.text)
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
+      .text('INIT')
+  }
+
+  _createEndBox () {
+    this._svg.endBox.g = this._svg.g.append('g')
+      .attr('class', 'end-box')
+      .attr('transform', `translate(
+        ${this._size.width - this._size.endBox.width} , 
+        ${-this._size.border + this._size.height - (this._size.endBox.height) / 2})`
+      )
+      .style('display', 'none')
+
+    this._svg.endBox.border = this._svg.endBox.g.append('rect')
+      .attr('class', 'end-box-border')
+      .attr('width', this._size.endBox.width + 2 * this._size.endBox.border)
+      .attr('height', this._size.endBox.height + 2 * this._size.endBox.border)
+      .attr('x', -this._size.endBox.border)
+      .attr('y', -this._size.endBox.border)
+      .attr('rx', this._size.borderRadious - 1)
+      .attr('ry', this._size.borderRadious - 1)
+
+    this._svg.endBox.rect = this._svg.endBox.g.append('rect')
+      .attr('class', 'init-box-rect')
+      .attr('width', this._size.endBox.width)
+      .attr('height', this._size.endBox.height)
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('rx', this._size.borderRadious - 1)
+      .attr('ry', this._size.borderRadious - 1)
+
+    this._svg.endBox.text = this._svg.endBox.g.append('text')
+      .attr('class', 'end-box-text')
+      .attr('width', this._size.endBox.width)
+      .attr('height', this._size.endBox.height)
+      .attr('x', this._size.endBox.width / 2)
+      .attr('y', this._size.endBox.height / 2)
+      .attr('font-size', this._size.endBox.text)
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
+      .text('END')
+  }
+
+  _createAbsenceBox () {
     // absence box
     this._svg.absenceBox.g = this._svg.g.append('g')
       .attr('class', 'absence-box')
       .attr('transform', `translate(
         ${this._size.border + (this._size.width - this._size.absenceBox.width) / 2}, 
-        ${-this._size.border + this._size.height - (this._size.absenceBox.height) / 2})`
+        ${this._size.border - (this._size.absenceBox.height) / 2})`
       )
       .style('display', 'none')
 
@@ -199,8 +316,9 @@ export default class Activity {
       .attr('text-anchor', 'middle')
       .attr('alignment-baseline', 'middle')
       .text('0')
+  }
 
-    // existence box
+  _createExistenceBox () {
     this._svg.existenceBox.g = this._svg.g.append('g')
       .attr('class', 'existence-box')
       .attr('transform', `translate(
@@ -237,11 +355,6 @@ export default class Activity {
       .attr('text-anchor', 'middle')
       .attr('alignment-baseline', 'middle')
       .text('1...X')
-
-    this._createHandles()
-    // this._createTooltip();
-    this._updateName()
-    return this
   }
 
   _createOverviewElement () {
@@ -643,6 +756,8 @@ export default class Activity {
     if (constraint.targetId === null) {
       if (constraint.type.name === 'Absence') this.showAbsenceBox(true, constraint)
       if (constraint.type.name === 'Existence') this.showExistenceBox(true, constraint)
+      if (constraint.type.name === 'Init') this.showInitBox(true, constraint)
+      if (constraint.type.name === 'End') this.showEndBox(true, constraint)
     }
 
     this.constraints.add(constraintId)
@@ -654,6 +769,8 @@ export default class Activity {
     if (constraint.targetId === null) {
       if (constraint.type.name === 'Absence') this.showAbsenceBox(false)
       if (constraint.type.name === 'Existence') this.showExistenceBox(false)
+      if (constraint.type.name === 'Init') this.showInitBox(false)
+      if (constraint.type.name === 'End') this.showEndBox(false)
     }
 
     this.constraints.delete(constraintId)
@@ -706,6 +823,14 @@ export default class Activity {
 
   showAbsenceBox (bool) {
     this._svg.absenceBox.g.style('display', bool ? null : 'none')
+  }
+
+  showInitBox (bool) {
+    this._svg.initBox.g.style('display', bool ? null : 'none')
+  }
+
+  showEndBox (bool) {
+    this._svg.endBox.g.style('display', bool ? null : 'none')
   }
 
   setName (name) {

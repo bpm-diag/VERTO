@@ -15,6 +15,23 @@ class ConstraintType {
     return `${this.name} (${this.params.join(', ')})`
   }
 }
+
+/*
+*/
+class Init extends ConstraintType {
+  constructor () {
+    super('Init', ['A'])
+  }
+}
+
+/*
+*/
+class End extends ConstraintType {
+  constructor () {
+    super('End', ['A'])
+  }
+}
+
 /*
 */
 class Existence extends ConstraintType {
@@ -338,7 +355,35 @@ class AlternateResponse extends ConstraintType {
 class AlternatePrecedence extends ConstraintType {
   constructor () {
     super('AlternatePrecedence', ['A', 'B'])
-    this.icon = '<defs><style>.b7f92ff4-49e2-44dd-9970-37ba9c378ad6,.e8e60ee2-f12a-4c20-80a2-203cb37bfb02{fill:#fff;}.a071afe6-1b87-4253-8080-0e321ea68bd0,.ae27ece9-c4e9-4a80-b429-6438b6ae4fcb,.be613ab9-aa80-42d0-a135-dd7e31471c3d{fill:none;stroke-miterlimit:10;}.be613ab9-aa80-42d0-a135-dd7e31471c3d{stroke:#231f20;stroke-width:40px;}.a071afe6-1b87-4253-8080-0e321ea68bd0,.ae27ece9-c4e9-4a80-b429-6438b6ae4fcb{stroke:#000;}.ae27ece9-c4e9-4a80-b429-6438b6ae4fcb{stroke-width:80px;}.a071afe6-1b87-4253-8080-0e321ea68bd0{stroke-width:93.88px;}.e8e60ee2-f12a-4c20-80a2-203cb37bfb02{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="b101d1e1-8093-4c14-8c6e-5afe9202b91e" data-name="Layer 2"><rect class="b7f92ff4-49e2-44dd-9970-37ba9c378ad6" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="be613ab9-aa80-42d0-a135-dd7e31471c3d" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect x="1323.99" y="372.05" width="195.04" height="1257.9" rx="18.96"/><rect class="ae27ece9-c4e9-4a80-b429-6438b6ae4fcb" x="1323.99" y="372.05" width="195.04" height="1257.9" rx="18.96"/><path d="M1091.21,1043.23c28-23.78,28-62.68,0-86.46L462.36,422.18c-28-23.78-50.86-13.2-50.86,23.51V1554.31c0,36.71,22.89,47.29,50.86,23.51Z"/><path class="a071afe6-1b87-4253-8080-0e321ea68bd0" d="M1091.21,1043.23c28-23.78,28-62.68,0-86.46L462.36,422.18c-28-23.78-50.86-13.2-50.86,23.51V1554.31c0,36.71,22.89,47.29,50.86,23.51Z"/><text class="e8e60ee2-f12a-4c20-80a2-203cb37bfb02" transform="translate(522 1137.93) scale(1.01 1)">A</text></g>'
+    // this.icon = '<defs><style>.b7f92ff4-49e2-44dd-9970-37ba9c378ad6,.e8e60ee2-f12a-4c20-80a2-203cb37bfb02{fill:#fff;}.a071afe6-1b87-4253-8080-0e321ea68bd0,.ae27ece9-c4e9-4a80-b429-6438b6ae4fcb,.be613ab9-aa80-42d0-a135-dd7e31471c3d{fill:none;stroke-miterlimit:10;}.be613ab9-aa80-42d0-a135-dd7e31471c3d{stroke:#231f20;stroke-width:40px;}.a071afe6-1b87-4253-8080-0e321ea68bd0,.ae27ece9-c4e9-4a80-b429-6438b6ae4fcb{stroke:#000;}.ae27ece9-c4e9-4a80-b429-6438b6ae4fcb{stroke-width:80px;}.a071afe6-1b87-4253-8080-0e321ea68bd0{stroke-width:93.88px;}.e8e60ee2-f12a-4c20-80a2-203cb37bfb02{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="b101d1e1-8093-4c14-8c6e-5afe9202b91e" data-name="Layer 2"><rect class="b7f92ff4-49e2-44dd-9970-37ba9c378ad6" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="be613ab9-aa80-42d0-a135-dd7e31471c3d" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect x="1323.99" y="372.05" width="195.04" height="1257.9" rx="18.96"/><rect class="ae27ece9-c4e9-4a80-b429-6438b6ae4fcb" x="1323.99" y="372.05" width="195.04" height="1257.9" rx="18.96"/><path d="M1091.21,1043.23c28-23.78,28-62.68,0-86.46L462.36,422.18c-28-23.78-50.86-13.2-50.86,23.51V1554.31c0,36.71,22.89,47.29,50.86,23.51Z"/><path class="a071afe6-1b87-4253-8080-0e321ea68bd0" d="M1091.21,1043.23c28-23.78,28-62.68,0-86.46L462.36,422.18c-28-23.78-50.86-13.2-50.86,23.51V1554.31c0,36.71,22.89,47.29,50.86,23.51Z"/><text class="e8e60ee2-f12a-4c20-80a2-203cb37bfb02" transform="translate(522 1137.93) scale(1.01 1)">A</text></g>'
+    this.icon = `<style type="text/css">
+    .st0{fill:#FFFFFF;}
+    .st1{fill:none;stroke:#231F20;stroke-width:40;stroke-miterlimit:10;}
+    .st2{fill:none;stroke:#000000;stroke-width:80;stroke-miterlimit:10;}
+    .st3{fill:none;stroke:#000000;stroke-width:93.88;stroke-miterlimit:10;}
+    .st4{enable-background:new    ;}
+  </style>
+  <title>VERTO</title>
+  <g id="b101d1e1-8093-4c14-8c6e-5afe9202b91e">
+    <path class="st0" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path class="st1" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path d="M1342.9,372h157.1c10.5,0,19,8.5,19,19v1220c0,10.5-8.5,19-19,19h-157.1c-10.5,0-19-8.5-19-19V391
+      C1324,380.5,1332.5,372,1342.9,372z"/>
+    <path class="st2" d="M1342.9,372h157.1c10.5,0,19,8.5,19,19v1220c0,10.5-8.5,19-19,19h-157.1c-10.5,0-19-8.5-19-19V391
+      C1324,380.5,1332.5,372,1342.9,372z"/>
+    <path d="M1091.2,1043.2c28-23.8,28-62.7,0-86.5L462.4,422.2c-28-23.8-50.9-13.2-50.9,23.5v1108.6c0,36.7,22.9,47.3,50.9,23.5
+      L1091.2,1043.2z"/>
+    <path class="st3" d="M1091.2,1043.2c28-23.8,28-62.7,0-86.5L462.4,422.2c-28-23.8-50.9-13.2-50.9,23.5v1108.6
+      c0,36.7,22.9,47.3,50.9,23.5L1091.2,1043.2z"/>
+    <g>
+      <g class="st4">
+        <path class="st0" d="M563.7,1051l-36.4,106.7h-99.2l158.4-461.9h126.7l165.3,461.9h-106L734.1,1051H563.7z M712.4,969.1
+          c-33.1-97.5-54.2-159.8-65.5-201.3h-0.7c-11.5,45.5-34.8,118-61.4,201.3H712.4z"/>
+      </g>
+    </g>
+  </g>`
   }
 
   getXML (id, sourceId, sourceName, targetId, targetName) {
@@ -1014,6 +1059,10 @@ const constraintTypes = {
 }
 */
 const constraintTypes = {
+  'Activity Role': {
+    Init,
+    End
+  },
   'Activity Existence': {
     Existence,
     Absence

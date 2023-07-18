@@ -51,6 +51,10 @@ export default class VERTOActivityModel {
     this.geometry.height = value
     return this
   }
+
+  toString () {
+    return `activity ${this.activityName()}`
+  }
 }
 
 /* ********************************************

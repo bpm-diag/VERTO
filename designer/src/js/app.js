@@ -28,6 +28,8 @@ export default class App {
 
     if (model === undefined) model = this.data.loadModelFromCache()
     if (model !== undefined && model !== null) {
+      console.log(model)
+
       this.data.modelId = model.id()
       this.data.modelName = model.name()
 
