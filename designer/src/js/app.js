@@ -47,6 +47,7 @@ export default class App {
         const targetId = c.targetActivityId()
         const name = c.constraintName()
         const props = c.props()
+        console.log(id, sourceId, targetId, name, props)
         this.data.createConstraint(id, sourceId, targetId, name, props)
       })
     }

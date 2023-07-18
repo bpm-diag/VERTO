@@ -70,6 +70,7 @@ export default class Constraint {
 
   setType (type) {
     this.type = type
+    this.name = this.type.name
     this.viz.setType(type)
     window.app.data.saveModelToCache()
   }

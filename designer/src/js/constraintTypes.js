@@ -297,7 +297,35 @@ class Precedence extends ConstraintType {
 class AlternateResponse extends ConstraintType {
   constructor () {
     super('AlternateResponse', ['A', 'B'])
-    this.icon = '<defs><style>.f18a5711-2e8b-49aa-8909-dbe21c96fcf1,.f220cd0b-db63-479f-9b5b-ad1101cbf17a{fill:#fff;}.adae8321-68eb-414e-8bf6-e5677a86bd9e,.af550190-ede1-441c-ae92-76adc88ce1a1,.ba2c0d2f-c997-4ab5-89f1-40882c830e56{fill:none;stroke-miterlimit:10;}.ba2c0d2f-c997-4ab5-89f1-40882c830e56{stroke:#231f20;stroke-width:40px;}.adae8321-68eb-414e-8bf6-e5677a86bd9e,.af550190-ede1-441c-ae92-76adc88ce1a1{stroke:#000;}.af550190-ede1-441c-ae92-76adc88ce1a1{stroke-width:80px;}.adae8321-68eb-414e-8bf6-e5677a86bd9e{stroke-width:129px;}.f18a5711-2e8b-49aa-8909-dbe21c96fcf1{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="ef0c9b62-345a-428c-b52c-0e02794e95c5" data-name="Layer 2"><rect class="f220cd0b-db63-479f-9b5b-ad1101cbf17a" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="ba2c0d2f-c997-4ab5-89f1-40882c830e56" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect x="527.47" y="402.05" width="195.04" height="1257.9" rx="18.96"/><rect class="af550190-ede1-441c-ae92-76adc88ce1a1" x="527.47" y="402.05" width="195.04" height="1257.9" rx="18.96"/><path d="M1669.15,1075.23c28-23.78,28-62.68,0-86.46L1040.29,454.18c-28-23.78-50.86-13.2-50.86,23.51V1586.31c0,36.71,22.89,47.29,50.86,23.51Z"/><path class="adae8321-68eb-414e-8bf6-e5677a86bd9e" d="M1669.15,1075.23c28-23.78,28-62.68,0-86.46L1040.29,454.18c-28-23.78-50.86-13.2-50.86,23.51V1586.31c0,36.71,22.89,47.29,50.86,23.51Z"/><text class="f18a5711-2e8b-49aa-8909-dbe21c96fcf1" transform="translate(1104 1168.35) scale(1.01 1)">A</text></g>'
+    // this.icon = '<defs><style>.f18a5711-2e8b-49aa-8909-dbe21c96fcf1,.f220cd0b-db63-479f-9b5b-ad1101cbf17a{fill:#fff;}.adae8321-68eb-414e-8bf6-e5677a86bd9e,.af550190-ede1-441c-ae92-76adc88ce1a1,.ba2c0d2f-c997-4ab5-89f1-40882c830e56{fill:none;stroke-miterlimit:10;}.ba2c0d2f-c997-4ab5-89f1-40882c830e56{stroke:#231f20;stroke-width:40px;}.adae8321-68eb-414e-8bf6-e5677a86bd9e,.af550190-ede1-441c-ae92-76adc88ce1a1{stroke:#000;}.af550190-ede1-441c-ae92-76adc88ce1a1{stroke-width:80px;}.adae8321-68eb-414e-8bf6-e5677a86bd9e{stroke-width:129px;}.f18a5711-2e8b-49aa-8909-dbe21c96fcf1{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="ef0c9b62-345a-428c-b52c-0e02794e95c5" data-name="Layer 2"><rect class="f220cd0b-db63-479f-9b5b-ad1101cbf17a" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="ba2c0d2f-c997-4ab5-89f1-40882c830e56" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect x="527.47" y="402.05" width="195.04" height="1257.9" rx="18.96"/><rect class="af550190-ede1-441c-ae92-76adc88ce1a1" x="527.47" y="402.05" width="195.04" height="1257.9" rx="18.96"/><path d="M1669.15,1075.23c28-23.78,28-62.68,0-86.46L1040.29,454.18c-28-23.78-50.86-13.2-50.86,23.51V1586.31c0,36.71,22.89,47.29,50.86,23.51Z"/><path class="adae8321-68eb-414e-8bf6-e5677a86bd9e" d="M1669.15,1075.23c28-23.78,28-62.68,0-86.46L1040.29,454.18c-28-23.78-50.86-13.2-50.86,23.51V1586.31c0,36.71,22.89,47.29,50.86,23.51Z"/><text class="f18a5711-2e8b-49aa-8909-dbe21c96fcf1" transform="translate(1104 1168.35) scale(1.01 1)">A</text></g>'
+    this.icon = `<style type="text/css">
+    .st0{fill:#FFFFFF;}
+    .st1{fill:none;stroke:#231F20;stroke-width:40;stroke-miterlimit:10;}
+    .st2{fill:none;stroke:#000000;stroke-width:80;stroke-miterlimit:10;}
+    .st3{fill:none;stroke:#000000;stroke-width:129;stroke-miterlimit:10;}
+    .st4{enable-background:new    ;}
+  </style>
+  <title>VERTO</title>
+  <g id="ef0c9b62-345a-428c-b52c-0e02794e95c5">
+    <path class="st0" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path class="st1" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path d="M546.4,402h157.1c10.5,0,19,8.5,19,19v1220c0,10.5-8.5,19-19,19H546.4c-10.5,0-19-8.5-19-19V421
+      C527.5,410.5,536,402,546.4,402z"/>
+    <path class="st2" d="M546.4,402h157.1c10.5,0,19,8.5,19,19v1220c0,10.5-8.5,19-19,19H546.4c-10.5,0-19-8.5-19-19V421
+      C527.5,410.5,536,402,546.4,402z"/>
+    <path d="M1669.2,1075.2c28-23.8,28-62.7,0-86.5l-628.9-534.6c-28-23.8-50.9-13.2-50.9,23.5v1108.6c0,36.7,22.9,47.3,50.9,23.5
+      L1669.2,1075.2z"/>
+    <path class="st3" d="M1669.2,1075.2c28-23.8,28-62.7,0-86.5l-628.9-534.6c-28-23.8-50.9-13.2-50.9,23.5v1108.6
+      c0,36.7,22.9,47.3,50.9,23.5L1669.2,1075.2z"/>
+    <g>
+      <g class="st4">
+        <path class="st0" d="M1132.5,1112.3l-36.4,106.7h-99.2l158.4-461.9H1282l165.3,461.9h-106l-38.3-106.7H1132.5z M1281.2,1030.4
+          c-33.1-97.5-54.2-159.8-65.5-201.3h-0.7c-11.5,45.5-34.8,118-61.4,201.3H1281.2z"/>
+      </g>
+    </g>
+  </g>`
   }
 
   getXML (id, sourceId, sourceName, targetId, targetName) {
@@ -441,7 +469,36 @@ class AlternatePrecedence extends ConstraintType {
 class ChainResponse extends ConstraintType {
   constructor () {
     super('ChainResponse', ['A', 'B'])
-    this.icon = '<defs><style>.a74e4c81-c2e3-4671-9768-a3a83cf25599,.b98aa88a-aba9-4ff7-8f47-259ba8cd6139{fill:#fff;}.a1fb650a-b6b7-4a12-9a80-c1c615d9b881,.ac5bbe2a-d7cf-4608-9a34-24541027878e,.ad7c1640-da06-4635-bf26-6666bd36c2a0{fill:none;stroke-miterlimit:10;}.a1fb650a-b6b7-4a12-9a80-c1c615d9b881{stroke:#231f20;stroke-width:40px;}.ac5bbe2a-d7cf-4608-9a34-24541027878e,.ad7c1640-da06-4635-bf26-6666bd36c2a0{stroke:#000;}.ad7c1640-da06-4635-bf26-6666bd36c2a0{stroke-width:80px;}.ac5bbe2a-d7cf-4608-9a34-24541027878e{stroke-width:129px;}.a74e4c81-c2e3-4671-9768-a3a83cf25599{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="ec9030d4-2b0b-42bd-a968-69799e8c9c8a" data-name="Layer 2"><rect class="b98aa88a-aba9-4ff7-8f47-259ba8cd6139" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="a1fb650a-b6b7-4a12-9a80-c1c615d9b881" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect x="536.97" y="402.05" width="195.04" height="1257.9" rx="18.96"/><rect class="ad7c1640-da06-4635-bf26-6666bd36c2a0" x="536.97" y="402.05" width="195.04" height="1257.9" rx="18.96"/><path d="M1678.65,1075.23c28-23.78,28-62.68,0-86.46L1049.79,454.18c-28-23.78-50.86-13.2-50.86,23.51V1586.31c0,36.71,22.89,47.29,50.86,23.51Z"/><path class="ac5bbe2a-d7cf-4608-9a34-24541027878e" d="M1678.65,1075.23c28-23.78,28-62.68,0-86.46L1049.79,454.18c-28-23.78-50.86-13.2-50.86,23.51V1586.31c0,36.71,22.89,47.29,50.86,23.51Z"/><text class="a74e4c81-c2e3-4671-9768-a3a83cf25599" transform="translate(1088.5 1178.35) scale(1.01 1)">C</text></g>'
+    // this.icon = '<defs><style>.a74e4c81-c2e3-4671-9768-a3a83cf25599,.b98aa88a-aba9-4ff7-8f47-259ba8cd6139{fill:#fff;}.a1fb650a-b6b7-4a12-9a80-c1c615d9b881,.ac5bbe2a-d7cf-4608-9a34-24541027878e,.ad7c1640-da06-4635-bf26-6666bd36c2a0{fill:none;stroke-miterlimit:10;}.a1fb650a-b6b7-4a12-9a80-c1c615d9b881{stroke:#231f20;stroke-width:40px;}.ac5bbe2a-d7cf-4608-9a34-24541027878e,.ad7c1640-da06-4635-bf26-6666bd36c2a0{stroke:#000;}.ad7c1640-da06-4635-bf26-6666bd36c2a0{stroke-width:80px;}.ac5bbe2a-d7cf-4608-9a34-24541027878e{stroke-width:129px;}.a74e4c81-c2e3-4671-9768-a3a83cf25599{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="ec9030d4-2b0b-42bd-a968-69799e8c9c8a" data-name="Layer 2"><rect class="b98aa88a-aba9-4ff7-8f47-259ba8cd6139" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="a1fb650a-b6b7-4a12-9a80-c1c615d9b881" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect x="536.97" y="402.05" width="195.04" height="1257.9" rx="18.96"/><rect class="ad7c1640-da06-4635-bf26-6666bd36c2a0" x="536.97" y="402.05" width="195.04" height="1257.9" rx="18.96"/><path d="M1678.65,1075.23c28-23.78,28-62.68,0-86.46L1049.79,454.18c-28-23.78-50.86-13.2-50.86,23.51V1586.31c0,36.71,22.89,47.29,50.86,23.51Z"/><path class="ac5bbe2a-d7cf-4608-9a34-24541027878e" d="M1678.65,1075.23c28-23.78,28-62.68,0-86.46L1049.79,454.18c-28-23.78-50.86-13.2-50.86,23.51V1586.31c0,36.71,22.89,47.29,50.86,23.51Z"/><text class="a74e4c81-c2e3-4671-9768-a3a83cf25599" transform="translate(1088.5 1178.35) scale(1.01 1)">C</text></g>'
+    this.icon = `<style type="text/css">
+    .st0{fill:#FFFFFF;}
+    .st1{fill:none;stroke:#231F20;stroke-width:40;stroke-miterlimit:10;}
+    .st2{fill:none;stroke:#000000;stroke-width:80;stroke-miterlimit:10;}
+    .st3{fill:none;stroke:#000000;stroke-width:129;stroke-miterlimit:10;}
+    .st4{enable-background:new    ;}
+  </style>
+  <title>VERTO</title>
+  <g id="ec9030d4-2b0b-42bd-a968-69799e8c9c8a">
+    <path class="st0" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path class="st1" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path d="M555.9,402H713c10.5,0,19,8.5,19,19v1220c0,10.5-8.5,19-19,19H555.9c-10.5,0-19-8.5-19-19V421
+      C537,410.5,545.5,402,555.9,402z"/>
+    <path class="st2" d="M555.9,402H713c10.5,0,19,8.5,19,19v1220c0,10.5-8.5,19-19,19H555.9c-10.5,0-19-8.5-19-19V421
+      C537,410.5,545.5,402,555.9,402z"/>
+    <path d="M1678.7,1075.2c28-23.8,28-62.7,0-86.5l-628.9-534.6c-28-23.8-50.9-13.2-50.9,23.5v1108.6c0,36.7,22.9,47.3,50.9,23.5
+      L1678.7,1075.2z"/>
+    <path class="st3" d="M1678.7,1075.2c28-23.8,28-62.7,0-86.5l-628.9-534.6c-28-23.8-50.9-13.2-50.9,23.5v1108.6
+      c0,36.7,22.9,47.3,50.9,23.5L1678.7,1075.2z"/>
+    <g>
+      <g class="st4">
+        <path class="st0" d="M1435.2,1103.2c-18.8,86.2-84.4,148.9-201.2,148.9c-147.9,0-217.9-103.7-217.9-235.1
+          c0-126.6,72.2-240.1,222.7-240.1c124.2,0,184.4,72.2,195.8,149.4h-100.9c-9.7-35.6-34.8-71.1-98.2-71.1
+          c-83.2,0-115.3,74.1-115.3,158.2c0,78.1,27.9,160.4,118,160.4c65.8,0,86.6-43.7,95.4-70.6H1435.2z"/>
+      </g>
+    </g>
+  </g>`
   }
 
   getXML (id, sourceId, sourceName, targetId, targetName) {
@@ -499,7 +556,36 @@ class ChainResponse extends ConstraintType {
 class ChainPrecedence extends ConstraintType {
   constructor () {
     super('ChainPrecedence', ['A', 'B'])
-    this.icon = '<defs><style>.a3b61175-1763-4080-9204-f49546dd0a6d,.f00485db-189d-4b3b-8871-78e0034c0efe{fill:#fff;}.a82dbef9-7d03-4316-a721-2ba4ec5590a2,.abbab66b-e053-48bb-b3d9-cc79ae902b3c,.abc1a53c-2332-4d61-9f3c-d7399c577a86{fill:none;stroke-miterlimit:10;}.a82dbef9-7d03-4316-a721-2ba4ec5590a2{stroke:#231f20;stroke-width:40px;}.abbab66b-e053-48bb-b3d9-cc79ae902b3c,.abc1a53c-2332-4d61-9f3c-d7399c577a86{stroke:#000;}.abc1a53c-2332-4d61-9f3c-d7399c577a86{stroke-width:80px;}.abbab66b-e053-48bb-b3d9-cc79ae902b3c{stroke-width:93.88px;}.a3b61175-1763-4080-9204-f49546dd0a6d{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="e0b58d51-b315-4db2-b793-794128d5b8dd" data-name="Layer 2"><rect class="f00485db-189d-4b3b-8871-78e0034c0efe" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="a82dbef9-7d03-4316-a721-2ba4ec5590a2" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect x="1323.99" y="372.05" width="195.04" height="1257.9" rx="18.96"/><rect class="abc1a53c-2332-4d61-9f3c-d7399c577a86" x="1323.99" y="372.05" width="195.04" height="1257.9" rx="18.96"/><path d="M1091.21,1043.23c28-23.78,28-62.68,0-86.46L462.36,422.18c-28-23.78-50.86-13.2-50.86,23.51V1554.31c0,36.71,22.89,47.29,50.86,23.51Z"/><path class="abbab66b-e053-48bb-b3d9-cc79ae902b3c" d="M1091.21,1043.23c28-23.78,28-62.68,0-86.46L462.36,422.18c-28-23.78-50.86-13.2-50.86,23.51V1554.31c0,36.71,22.89,47.29,50.86,23.51Z"/><text class="a3b61175-1763-4080-9204-f49546dd0a6d" transform="translate(520 1137.93) scale(1.01 1)">C</text></g>'
+    // this.icon = '<defs><style>.a3b61175-1763-4080-9204-f49546dd0a6d,.f00485db-189d-4b3b-8871-78e0034c0efe{fill:#fff;}.a82dbef9-7d03-4316-a721-2ba4ec5590a2,.abbab66b-e053-48bb-b3d9-cc79ae902b3c,.abc1a53c-2332-4d61-9f3c-d7399c577a86{fill:none;stroke-miterlimit:10;}.a82dbef9-7d03-4316-a721-2ba4ec5590a2{stroke:#231f20;stroke-width:40px;}.abbab66b-e053-48bb-b3d9-cc79ae902b3c,.abc1a53c-2332-4d61-9f3c-d7399c577a86{stroke:#000;}.abc1a53c-2332-4d61-9f3c-d7399c577a86{stroke-width:80px;}.abbab66b-e053-48bb-b3d9-cc79ae902b3c{stroke-width:93.88px;}.a3b61175-1763-4080-9204-f49546dd0a6d{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="e0b58d51-b315-4db2-b793-794128d5b8dd" data-name="Layer 2"><rect class="f00485db-189d-4b3b-8871-78e0034c0efe" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="a82dbef9-7d03-4316-a721-2ba4ec5590a2" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect x="1323.99" y="372.05" width="195.04" height="1257.9" rx="18.96"/><rect class="abc1a53c-2332-4d61-9f3c-d7399c577a86" x="1323.99" y="372.05" width="195.04" height="1257.9" rx="18.96"/><path d="M1091.21,1043.23c28-23.78,28-62.68,0-86.46L462.36,422.18c-28-23.78-50.86-13.2-50.86,23.51V1554.31c0,36.71,22.89,47.29,50.86,23.51Z"/><path class="abbab66b-e053-48bb-b3d9-cc79ae902b3c" d="M1091.21,1043.23c28-23.78,28-62.68,0-86.46L462.36,422.18c-28-23.78-50.86-13.2-50.86,23.51V1554.31c0,36.71,22.89,47.29,50.86,23.51Z"/><text class="a3b61175-1763-4080-9204-f49546dd0a6d" transform="translate(520 1137.93) scale(1.01 1)">C</text></g>'
+    this.icon = `<style type="text/css">
+    .st0{fill:#FFFFFF;}
+    .st1{fill:none;stroke:#231F20;stroke-width:40;stroke-miterlimit:10;}
+    .st2{fill:none;stroke:#000000;stroke-width:80;stroke-miterlimit:10;}
+    .st3{fill:none;stroke:#000000;stroke-width:93.88;stroke-miterlimit:10;}
+    .st4{enable-background:new    ;}
+  </style>
+  <title>VERTO</title>
+  <g id="e0b58d51-b315-4db2-b793-794128d5b8dd">
+    <path class="st0" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path class="st1" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path d="M1342.9,372h157.1c10.5,0,19,8.5,19,19v1220c0,10.5-8.5,19-19,19h-157.1c-10.5,0-19-8.5-19-19V391
+      C1324,380.5,1332.5,372,1342.9,372z"/>
+    <path class="st2" d="M1342.9,372h157.1c10.5,0,19,8.5,19,19v1220c0,10.5-8.5,19-19,19h-157.1c-10.5,0-19-8.5-19-19V391
+      C1324,380.5,1332.5,372,1342.9,372z"/>
+    <path d="M1091.2,1043.2c28-23.8,28-62.7,0-86.5L462.4,422.2c-28-23.8-50.9-13.2-50.9,23.5v1108.6c0,36.7,22.9,47.3,50.9,23.5
+      L1091.2,1043.2z"/>
+    <path class="st3" d="M1091.2,1043.2c28-23.8,28-62.7,0-86.5L462.4,422.2c-28-23.8-50.9-13.2-50.9,23.5v1108.6
+      c0,36.7,22.9,47.3,50.9,23.5L1091.2,1043.2z"/>
+    <g>
+      <g class="st4">
+        <path class="st0" d="M871.3,1082.7c-18.8,86.2-84.4,148.9-201.2,148.9c-147.9,0-217.9-103.7-217.9-235.1
+          c0-126.6,72.2-240.1,222.7-240.1c124.2,0,184.4,72.2,195.8,149.4H769.9c-9.7-35.6-34.8-71.1-98.2-71.1
+          c-83.2,0-115.3,74.1-115.3,158.2c0,78.1,27.9,160.4,118,160.4c65.8,0,86.6-43.7,95.4-70.6H871.3z"/>
+      </g>
+    </g>
+  </g>`
   }
 
   getXML (id, sourceId, sourceName, targetId, targetName) {
@@ -734,7 +820,39 @@ class Succession extends ConstraintType {
 class ChainSuccession extends ConstraintType {
   constructor () {
     super('ChainSuccession', ['A', 'B'])
-    this.icon = '<defs><style>.a7bc3507-6b1e-4751-88cf-300f22b3d0b0,.b4740027-9368-4946-aa89-f3de60d39f32{fill:#fff;}.bbf3b8b1-5fd5-43e2-ab4d-c59bdb9c1b05,.bfcfd4f0-5a11-4f6e-a09a-5a5f6f908de1{fill:none;stroke-miterlimit:10;}.bfcfd4f0-5a11-4f6e-a09a-5a5f6f908de1{stroke:#231f20;stroke-width:40px;}.bbf3b8b1-5fd5-43e2-ab4d-c59bdb9c1b05{stroke:#000;stroke-width:80px;}.a7bc3507-6b1e-4751-88cf-300f22b3d0b0{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="f1128e03-ce16-483f-a3d9-dd47729a268b" data-name="Layer 2"><rect class="b4740027-9368-4946-aa89-f3de60d39f32" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="bfcfd4f0-5a11-4f6e-a09a-5a5f6f908de1" x="52" y="52" width="1896" height="1896" rx="189.6"/><path d="M1322.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L786.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><path class="bbf3b8b1-5fd5-43e2-ab4d-c59bdb9c1b05" d="M1322.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L786.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><rect x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="bbf3b8b1-5fd5-43e2-ab4d-c59bdb9c1b05" x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="bbf3b8b1-5fd5-43e2-ab4d-c59bdb9c1b05" x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><text class="a7bc3507-6b1e-4751-88cf-300f22b3d0b0" transform="translate(781 1190.35) scale(1.01 1)">C</text></g>'
+    // this.icon = '<defs><style>.a7bc3507-6b1e-4751-88cf-300f22b3d0b0,.b4740027-9368-4946-aa89-f3de60d39f32{fill:#fff;}.bbf3b8b1-5fd5-43e2-ab4d-c59bdb9c1b05,.bfcfd4f0-5a11-4f6e-a09a-5a5f6f908de1{fill:none;stroke-miterlimit:10;}.bfcfd4f0-5a11-4f6e-a09a-5a5f6f908de1{stroke:#231f20;stroke-width:40px;}.bbf3b8b1-5fd5-43e2-ab4d-c59bdb9c1b05{stroke:#000;stroke-width:80px;}.a7bc3507-6b1e-4751-88cf-300f22b3d0b0{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="f1128e03-ce16-483f-a3d9-dd47729a268b" data-name="Layer 2"><rect class="b4740027-9368-4946-aa89-f3de60d39f32" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="bfcfd4f0-5a11-4f6e-a09a-5a5f6f908de1" x="52" y="52" width="1896" height="1896" rx="189.6"/><path d="M1322.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L786.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><path class="bbf3b8b1-5fd5-43e2-ab4d-c59bdb9c1b05" d="M1322.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L786.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><rect x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="bbf3b8b1-5fd5-43e2-ab4d-c59bdb9c1b05" x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="bbf3b8b1-5fd5-43e2-ab4d-c59bdb9c1b05" x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><text class="a7bc3507-6b1e-4751-88cf-300f22b3d0b0" transform="translate(781 1190.35) scale(1.01 1)">C</text></g>'
+    this.icon = `<style type="text/css">
+    .st0{fill:#FFFFFF;}
+    .st1{fill:none;stroke:#231F20;stroke-width:40;stroke-miterlimit:10;}
+    .st2{fill:none;stroke:#000000;stroke-width:80;stroke-miterlimit:10;}
+    .st3{enable-background:new    ;}
+  </style>
+  <title>VERTO</title>
+  <g id="f1128e03-ce16-483f-a3d9-dd47729a268b">
+    <path class="st0" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path class="st1" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path d="M1322.2,1036.8c23.8-20.3,23.8-53.4,0-73.7L786.3,507.6c-23.8-20.3-43.3-11.3-43.3,20v944.7c0,31.3,19.5,40.3,43.3,20
+      L1322.2,1036.8z"/>
+    <path class="st2" d="M1322.2,1036.8c23.8-20.3,23.8-53.4,0-73.7L786.3,507.6c-23.8-20.3-43.3-11.3-43.3,20v944.7
+      c0,31.3,19.5,40.3,43.3,20L1322.2,1036.8z"/>
+    <path d="M273,476.4h124.5c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19H273c-10.5,0-19-8.5-19-19V495.3
+      C254,484.8,262.5,476.4,273,476.4z"/>
+    <path class="st2" d="M273,476.4h124.5c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19H273c-10.5,0-19-8.5-19-19V495.3
+      C254,484.8,262.5,476.4,273,476.4z"/>
+    <path d="M1567.6,476.4H1692c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19h-124.5c-10.5,0-19-8.5-19-19V495.3
+      C1548.6,484.8,1557.1,476.4,1567.6,476.4z"/>
+    <path class="st2" d="M1567.6,476.4H1692c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19h-124.5c-10.5,0-19-8.5-19-19V495.3
+      C1548.6,484.8,1557.1,476.4,1567.6,476.4z"/>
+    <g>
+      <g class="st3">
+        <path class="st0" d="M1163.3,1088.8c-18.8,86.2-84.4,148.9-201.2,148.9c-147.9,0-217.9-103.7-217.9-235.1
+          c0-126.6,72.2-240.1,222.7-240.1c124.2,0,184.4,72.2,195.8,149.4h-100.9c-9.7-35.6-34.8-71.1-98.2-71.1
+          c-83.2,0-115.3,74.1-115.3,158.2c0,78.1,27.9,160.4,118,160.4c65.8,0,86.6-43.7,95.4-70.6H1163.3z"/>
+      </g>
+    </g>
+  </g>`
   }
 
   getXML (id, sourceId, sourceName, targetId, targetName) {
@@ -792,7 +910,38 @@ class ChainSuccession extends ConstraintType {
 class AlternateSuccession extends ConstraintType {
   constructor () {
     super('AlternateSuccession', ['A', 'B'])
-    this.icon = '<defs><style>.bcfbf0ff-53e2-42d0-b9d1-187d61675f65,.f17e4939-b3cd-4fe0-bf42-1349e97302fb{fill:#fff;}.b32acbf8-6587-4656-9031-21c68a483e0a,.e280ac34-0135-4eeb-bf96-7579d9bdabcb{fill:none;stroke-miterlimit:10;}.b32acbf8-6587-4656-9031-21c68a483e0a{stroke:#231f20;stroke-width:40px;}.e280ac34-0135-4eeb-bf96-7579d9bdabcb{stroke:#000;stroke-width:80px;}.bcfbf0ff-53e2-42d0-b9d1-187d61675f65{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="b0e43844-4ba6-485d-8479-9bebea3ffb31" data-name="Layer 2"><rect class="f17e4939-b3cd-4fe0-bf42-1349e97302fb" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="b32acbf8-6587-4656-9031-21c68a483e0a" x="52" y="52" width="1896" height="1896" rx="189.6"/><path d="M1322.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L786.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><path class="e280ac34-0135-4eeb-bf96-7579d9bdabcb" d="M1322.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L786.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><rect x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="e280ac34-0135-4eeb-bf96-7579d9bdabcb" x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="e280ac34-0135-4eeb-bf96-7579d9bdabcb" x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><text class="bcfbf0ff-53e2-42d0-b9d1-187d61675f65" transform="translate(811.5 1179.35) scale(1.01 1)">A</text></g>'
+    // this.icon = '<defs><style>.bcfbf0ff-53e2-42d0-b9d1-187d61675f65,.f17e4939-b3cd-4fe0-bf42-1349e97302fb{fill:#fff;}.b32acbf8-6587-4656-9031-21c68a483e0a,.e280ac34-0135-4eeb-bf96-7579d9bdabcb{fill:none;stroke-miterlimit:10;}.b32acbf8-6587-4656-9031-21c68a483e0a{stroke:#231f20;stroke-width:40px;}.e280ac34-0135-4eeb-bf96-7579d9bdabcb{stroke:#000;stroke-width:80px;}.bcfbf0ff-53e2-42d0-b9d1-187d61675f65{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="b0e43844-4ba6-485d-8479-9bebea3ffb31" data-name="Layer 2"><rect class="f17e4939-b3cd-4fe0-bf42-1349e97302fb" x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="b32acbf8-6587-4656-9031-21c68a483e0a" x="52" y="52" width="1896" height="1896" rx="189.6"/><path d="M1322.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L786.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><path class="e280ac34-0135-4eeb-bf96-7579d9bdabcb" d="M1322.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L786.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><rect x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="e280ac34-0135-4eeb-bf96-7579d9bdabcb" x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="e280ac34-0135-4eeb-bf96-7579d9bdabcb" x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><text class="bcfbf0ff-53e2-42d0-b9d1-187d61675f65" transform="translate(811.5 1179.35) scale(1.01 1)">A</text></g>'
+    this.icon = `<style type="text/css">
+    .st0{fill:#FFFFFF;}
+    .st1{fill:none;stroke:#231F20;stroke-width:40;stroke-miterlimit:10;}
+    .st2{fill:none;stroke:#000000;stroke-width:80;stroke-miterlimit:10;}
+    .st3{enable-background:new    ;}
+  </style>
+  <title>VERTO</title>
+  <g id="b0e43844-4ba6-485d-8479-9bebea3ffb31">
+    <path class="st0" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path class="st1" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path d="M1322.2,1036.8c23.8-20.3,23.8-53.4,0-73.7L786.3,507.6c-23.8-20.3-43.3-11.3-43.3,20v944.7c0,31.3,19.5,40.3,43.3,20
+      L1322.2,1036.8z"/>
+    <path class="st2" d="M1322.2,1036.8c23.8-20.3,23.8-53.4,0-73.7L786.3,507.6c-23.8-20.3-43.3-11.3-43.3,20v944.7
+      c0,31.3,19.5,40.3,43.3,20L1322.2,1036.8z"/>
+    <path d="M273,476.4h124.5c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19H273c-10.5,0-19-8.5-19-19V495.3
+      C254,484.8,262.5,476.4,273,476.4z"/>
+    <path class="st2" d="M273,476.4h124.5c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19H273c-10.5,0-19-8.5-19-19V495.3
+      C254,484.8,262.5,476.4,273,476.4z"/>
+    <path d="M1567.6,476.4H1692c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19h-124.5c-10.5,0-19-8.5-19-19V495.3
+      C1548.6,484.8,1557.1,476.4,1567.6,476.4z"/>
+    <path class="st2" d="M1567.6,476.4H1692c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19h-124.5c-10.5,0-19-8.5-19-19V495.3
+      C1548.6,484.8,1557.1,476.4,1567.6,476.4z"/>
+    <g>
+      <g class="st3">
+        <path class="st0" d="M858.8,1067.4l-36.4,106.7h-99.2l158.4-461.9h126.7l165.3,461.9h-106l-38.3-106.7H858.8z M1007.6,985.5
+          c-33.1-97.5-54.2-159.8-65.5-201.3h-0.7c-11.5,45.5-34.8,118-61.4,201.3H1007.6z"/>
+      </g>
+    </g>
+  </g>`
   }
 
   getXML (id, sourceId, sourceName, targetId, targetName) {
@@ -972,7 +1121,39 @@ class NotSuccession extends ConstraintType {
 class NotChainSuccession extends ConstraintType {
   constructor () {
     super('NotChainSuccession', ['A', 'B'])
-    this.icon = '<defs><style>.b42f206c-9a94-4fd1-864b-a85ae68ebdd7,.e21c11d8-f011-48d7-9e6d-7c7f29588ef8{fill:none;stroke-miterlimit:10;}.e21c11d8-f011-48d7-9e6d-7c7f29588ef8{stroke:#000;stroke-width:40px;}.b36f2059-7f23-4e31-8480-41cd20c27d10{fill:#fff;}.b42f206c-9a94-4fd1-864b-a85ae68ebdd7{stroke:#fff;stroke-width:80px;}.e76f7b2f-4c6f-4591-ae5e-77bbdd1cd3a1{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="e925acbf-6d3a-4307-8e04-6aee74bcf158" data-name="Layer 2"><rect x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="e21c11d8-f011-48d7-9e6d-7c7f29588ef8" x="52" y="52" width="1896" height="1896" rx="189.6"/><path class="b36f2059-7f23-4e31-8480-41cd20c27d10" d="M1342.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L806.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><path class="b42f206c-9a94-4fd1-864b-a85ae68ebdd7" d="M1342.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L806.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><rect class="b36f2059-7f23-4e31-8480-41cd20c27d10" x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="b42f206c-9a94-4fd1-864b-a85ae68ebdd7" x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="b36f2059-7f23-4e31-8480-41cd20c27d10" x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="b42f206c-9a94-4fd1-864b-a85ae68ebdd7" x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><text class="e76f7b2f-4c6f-4591-ae5e-77bbdd1cd3a1" transform="translate(781 1190.35) scale(1.01 1)">C</text></g>'
+    // this.icon = '<defs><style>.b42f206c-9a94-4fd1-864b-a85ae68ebdd7,.e21c11d8-f011-48d7-9e6d-7c7f29588ef8{fill:none;stroke-miterlimit:10;}.e21c11d8-f011-48d7-9e6d-7c7f29588ef8{stroke:#000;stroke-width:40px;}.b36f2059-7f23-4e31-8480-41cd20c27d10{fill:#fff;}.b42f206c-9a94-4fd1-864b-a85ae68ebdd7{stroke:#fff;stroke-width:80px;}.e76f7b2f-4c6f-4591-ae5e-77bbdd1cd3a1{font-size:480px;font-family:OpenSans-SemiBold, Open Sans SemiBold;font-weight:600;}</style></defs><title>VERTO</title><g id="e925acbf-6d3a-4307-8e04-6aee74bcf158" data-name="Layer 2"><rect x="52" y="52" width="1896" height="1896" rx="189.6"/><rect class="e21c11d8-f011-48d7-9e6d-7c7f29588ef8" x="52" y="52" width="1896" height="1896" rx="189.6"/><path class="b36f2059-7f23-4e31-8480-41cd20c27d10" d="M1342.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L806.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><path class="b42f206c-9a94-4fd1-864b-a85ae68ebdd7" d="M1342.23,1036.84c23.84-20.26,23.84-53.42,0-73.68L806.34,507.6c-23.84-20.27-43.34-11.25-43.34,20v944.72c0,31.29,19.5,40.31,43.34,20Z"/><rect class="b36f2059-7f23-4e31-8480-41cd20c27d10" x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="b42f206c-9a94-4fd1-864b-a85ae68ebdd7" x="254.04" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="b36f2059-7f23-4e31-8480-41cd20c27d10" x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><rect class="b42f206c-9a94-4fd1-864b-a85ae68ebdd7" x="1548.62" y="476.36" width="162.38" height="1047.28" rx="18.96"/><text class="e76f7b2f-4c6f-4591-ae5e-77bbdd1cd3a1" transform="translate(781 1190.35) scale(1.01 1)">C</text></g>'
+    this.icon = `<style type="text/css">
+    .st0{fill:none;stroke:#000000;stroke-width:40;stroke-miterlimit:10;}
+    .st1{fill:#FFFFFF;}
+    .st2{fill:none;stroke:#FFFFFF;stroke-width:80;stroke-miterlimit:10;}
+    .st3{enable-background:new    ;}
+  </style>
+  <title>VERTO</title>
+  <g id="e925acbf-6d3a-4307-8e04-6aee74bcf158">
+    <path d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path class="st0" d="M241.6,52h1516.8c104.7,0,189.6,84.9,189.6,189.6v1516.8c0,104.7-84.9,189.6-189.6,189.6H241.6
+      C136.9,1948,52,1863.1,52,1758.4V241.6C52,136.9,136.9,52,241.6,52z"/>
+    <path class="st1" d="M1342.2,1036.8c23.8-20.3,23.8-53.4,0-73.7L806.3,507.6c-23.8-20.3-43.3-11.3-43.3,20v944.7
+      c0,31.3,19.5,40.3,43.3,20L1342.2,1036.8z"/>
+    <path class="st2" d="M1342.2,1036.8c23.8-20.3,23.8-53.4,0-73.7L806.3,507.6c-23.8-20.3-43.3-11.3-43.3,20v944.7
+      c0,31.3,19.5,40.3,43.3,20L1342.2,1036.8z"/>
+    <path class="st1" d="M273,476.4h124.5c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19H273c-10.5,0-19-8.5-19-19V495.3
+      C254,484.8,262.5,476.4,273,476.4z"/>
+    <path class="st2" d="M273,476.4h124.5c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19H273c-10.5,0-19-8.5-19-19V495.3
+      C254,484.8,262.5,476.4,273,476.4z"/>
+    <path class="st1" d="M1567.6,476.4H1692c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19h-124.5c-10.5,0-19-8.5-19-19V495.3
+      C1548.6,484.8,1557.1,476.4,1567.6,476.4z"/>
+    <path class="st2" d="M1567.6,476.4H1692c10.5,0,19,8.5,19,19v1009.4c0,10.5-8.5,19-19,19h-124.5c-10.5,0-19-8.5-19-19V495.3
+      C1548.6,484.8,1557.1,476.4,1567.6,476.4z"/>
+    <g>
+      <g class="st3">
+        <path d="M1168.4,1076.1c-18.8,86.2-84.4,148.9-201.2,148.9c-147.9,0-217.9-103.7-217.9-235.1c0-126.6,72.2-240.1,222.7-240.1
+          c124.2,0,184.4,72.2,195.8,149.4H1067c-9.7-35.6-34.8-71.1-98.2-71.1c-83.2,0-115.3,74.1-115.3,158.2
+          c0,78.1,27.9,160.4,118,160.4c65.8,0,86.6-43.7,95.4-70.6H1168.4z"/>
+      </g>
+    </g>
+  </g>`
   }
 
   getXML (id, sourceId, sourceName, targetId, targetName) {
