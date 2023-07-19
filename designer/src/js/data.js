@@ -195,7 +195,7 @@ export default class Data {
     c.delete()
     delete this.constraints[constraintId]
     //
-    this.createConstraint(constraintId, newSourceId, newTargetId, type, true)
+    this.createConstraint(constraintId, newSourceId, newTargetId, type, {}, true)
   }
 
   updateConstraintStyles (activityId1, activityId2) {

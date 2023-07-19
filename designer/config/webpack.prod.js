@@ -10,8 +10,8 @@ module.exports = merge(common, {
   devtool: false,
   output: {
     path: paths.build,
-    publicPath: '/',
-    filename: 'js/[name].[contenthash].bundle.js',
+    publicPath: 'auto',
+    filename: 'js/[name].[contenthash].bundle.js'
   },
   module: {
     rules: [
@@ -24,32 +24,32 @@ module.exports = merge(common, {
             options: {
               importLoaders: 2,
               sourceMap: false,
-              modules: false,
+              modules: false
             },
           },
           'postcss-loader',
-          'sass-loader',
+          'sass-loader'
         ],
-      },
+      }
     ],
   },
   plugins: [
     // Extracts CSS into separate files
     new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash].css',
-      chunkFilename: '[id].css',
-    }),
+      chunkFilename: '[id].css'
+    })
   ],
   optimization: {
     minimize: true,
     minimizer: [new CssMinimizerPlugin(), '...'],
     runtimeChunk: {
-      name: 'runtime',
+      name: 'runtime'
     },
   },
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
-    maxAssetSize: 512000,
+    maxAssetSize: 512000
   },
 })
