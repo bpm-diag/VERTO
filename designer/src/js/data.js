@@ -285,7 +285,7 @@ export default class Data {
 
   saveModelToCache () {
     const model = this.toVERTOModel()
-    console.log(model)
+    // console.log(model)
     const str = model.toString()
     window.localStorage.setItem(this.cacheKey, str)
   }

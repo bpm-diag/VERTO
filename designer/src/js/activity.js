@@ -18,7 +18,7 @@ export default class Activity {
       * Private fields.
       */
     this._size = {
-      width: 120,
+      width: 140,
       height: 60,
       minWidth: 50,
       minHeight: 50,

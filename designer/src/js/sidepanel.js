@@ -33,7 +33,7 @@ export default class Sidepanel {
         this.showGlobalMenu()
       })
     this.activityMenu.select('.activity-name')
-      .property('pattern', '[A-Za-z0-9]+')
+      // .property('pattern', '[A-Za-z0-9]+')
       .property('value', activity.name)
       .on('keyup', function () {
         const name = d3.select(this).property('value')
